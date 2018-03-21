@@ -1,13 +1,19 @@
 const express = require('express')
 const app = express()
-app.set('view engine', 'pug')
+//app.set('view engine', 'pug')
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
 
 
-
-
+/*
 app.get('/', function (req, res) {
   res.render('index', { title: 'SS', message: '2018' })
 })
+*/
+
+app.get('/', function(req, res) {
+    res.render('index');
+});
 
 app.get('/r',function(req,res){
 
@@ -25,3 +31,4 @@ app.get('/i',function(req,res){
 app.listen(3000);
 
 console.log("Running at Port 3000");
+
