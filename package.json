@@ -11,6 +11,8 @@
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "jade": "~1.9.1",
+    "mongodb": "^3.0.4",
+    "mongoose": "^5.0.11",
     "pug": "^2.0.0-rc.4"
   },
   "devDependencies": {},
