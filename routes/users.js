@@ -13,7 +13,7 @@ router.get('/users/:id', function(req, res, next) {
     //res.send(nameList[userId]);
     res.render('users.ejs', {
         title :'User List',
-        nameList :nameList,
+        userList :nameList,
 
     });
 });

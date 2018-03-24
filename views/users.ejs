@@ -20,19 +20,20 @@
         <h3>Welcome to users list</h3>
         <div class="container-fluid">
             <div class="row">
-                <% for (var name in nameList) { %>
+                <% for (var index in userList) { %>
 
                 <div class="col-sm-6">
 
                     <div class="card">
                         <!-- Header -->
                         <div class="card-header">
-                            <div class="card-header__avatar"></div><a class="card-header__follow" href="#">Follow</a>
+                            <div class="card-header__avatar" style="background:url(<%= userList[index].avatar %>) ;background-size: cover;  "></div>
+                                <a class="card-header__follow" href="#">Follow</a>
                         </div>
                         <!-- Content-->
                         <div class="card-content">
-                            <div class="card-content__username"><%= nameList[name] %></div>
-                            <div class="card-content__bio">My bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus lorem a odio facilisis, a consectetur odio ullamcorper.</div>
+                            <div class="card-content__username"><%= userList[index].name %></div>
+                            <div class="card-content__bio"><%= userList[index].bio %></div>
                         </div>
                         <!-- Footer-->
                         <div class="card-footer">

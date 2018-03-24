@@ -82,6 +82,8 @@ label:before {
 .card-content {
   text-align: center;
   padding: 30px 20px;
+  min-height:120px;
+  max-height:120px;
 }
 .card-content__username {
   margin: 0 0 10px;

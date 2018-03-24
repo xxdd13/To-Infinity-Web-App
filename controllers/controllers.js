@@ -5,7 +5,7 @@ module.exports.users = function(req, res) {
 
         res.render('users', {
             title :'User List',
-            nameList : db,
+            userList : db,
 
         });
 
