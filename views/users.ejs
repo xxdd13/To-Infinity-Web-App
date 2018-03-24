@@ -1,4 +1,4 @@
-<!-- views/pages/index.ejs -->
+<!-- views/users.ejs -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,8 +13,13 @@
 
 <main>
     <div class="jumbotron">
-        <h1>This is great</h1>
-        <p>Welcome to templating using EJS</p>
+        <h1><%= title %></h1>
+        <h3>Welcome to users list</h3>
+
+        <% for (var name in nameList) { %>
+        <p><%= nameList[name] %></p>
+
+        <% } %>
     </div>
 </main>
 
@@ -24,3 +29,4 @@
 
 </body>
 </html>
+

@@ -1,74 +1,59 @@
-const express = require('express')
-const app = express()
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 
-var uri = "mongodb+srv://info30005thursday:XXDD1300!!@cluster0-rcw4z.mongodb.net/test";
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
 
-var MongoClient = require('mongodb').MongoClient;
+var router = require('./routes/routes');
 
-var mongoose = require('mongoose');
-mongoose.connect(uri);
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-    console.log("we're connected!")
-});
+var db = require('./models/db');
 
 
-var xxddSchema = mongoose.Schema({
-    name: String
-});
+var app = express();
 
-var xxdd = mongoose.model('xxdd', xxddSchema);
-
-var xxdd1 = new xxdd({ name: 'xdd1' });
-console.log(xxdd1.name); // 'Silence'
-
-/*
-MongoClient.connect(uri, function(err, client) {
-    const collection = client.db("test").collection("devices");
-    // perform actions on the collection object
-    client.close();
-});
-*/
-
-//app.set('view engine', 'pug')
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views');
 
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', indexRouter);
+app.use('/', router);
 
-app.get('/', function(req, res) {
-    res.render('index');
-});
-
-app.get('/m',function(req,res){
-
-    var MongoClient = require('mongodb').MongoClient
-
-    var URL = 'mongodb://localhost:27017/mydatabase'
-
-    MongoClient.connect(URL, function(err, db) {s
-        if (err) return
-
-        var collection = db.collection('foods')
-        collection.insert({name: 'taco', tasty: true}, function(err, result) {
-            collection.find({name: 'taco'}).toArray(function(err, docs) {
-                console.log(docs[0])
-                db.close()
-            })
-        })
-    })
-
-});
-
-app.get('/i',function(req,res){
-
-     res.sendFile(__dirname + '/interviewguide.html');
-
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
 });
 
 
-app.listen(3000);
 
-console.log("Running at Port 3000");
 
+const PORT = process.env.PORT || 3000;
+
+app.use(express.static('public'));
+
+app.listen(PORT, function(){
+    //console.log(`Express listening on port ${PORT}`);
+    console.log("Starting server at 3000");
+});
+
+
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+module.exports = app;
