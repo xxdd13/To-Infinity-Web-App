@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include head %>
+    <title>Register Login with Authentication</title>
+    <!--Custom Theme files-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    <link href='//fonts.googleapis.com/css?family=Jura:400,300,500,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/stylesheets/loginstyle.css"/>
+
+
+
+</head>
+<body>
+<div id="particlesBG"></div>
+<script src="/javascripts/particles.js"></script>
+<header>
+<% include nav %>
+</header>>
+<!-- main -->
+
+<div class="container">
+    <div class="">
+        <div class="col-md-6 col-md-offset-3 col-xs-12">
+            <!-- @ Start login box wrapper -->
+            <div class="xxdd-wrapp">
+                <div class="xxdd-color-conatiner ripple-effect-All"></div>
+                <div class="xxdd-header-wrapp ">
+                    <div class="xxdd-switches">
+                        <button class="btn btn-circle btn-lg btn-xxdd ripple-effect btn-success xxdd-switch-button">
+                            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                                <path fill="#fff" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+                            </svg>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="xxdd-continer">
+                    <!-- @ Login form container -->
+                    <form action="/login" method="post" class="clearfix" id="login-form">
+                        <h1>Login Page</h1>
+                        <div class="col-md-12">
+
+                            <div class="input-group xxdd-form">
+                                <div class="xxdd-line">
+                                    <input type="text" name="logemail" autocomplete="off" id="username" class="form-control">
+                                    <label class="xxdd-label">Email or Username</label>
+                                </div>
+                            </div>
+                            <div class="input-group xxdd-form">
+                                <div class="xxdd-line">
+                                    <input type="password" name="logpassword" autocomplete="off" id="password" class="form-control">
+                                    <label class="xxdd-label">Password</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-xxdd ripple-effect btn-success btn-lg btn-block">Login</button>
+                        </div>
+                        <br/>
+                    </form>
+
+                    <form action="/login" method="post" class="clearfix form-hidden" id="Register-form">
+                        <h1>Create a new account</h1>
+                        <div class="col-md-12">
+                            <div class="input-group xxdd-form">
+                                <div class="xxdd-line">
+                                    <input type="text" name="email"  id="email" class="form-control">
+                                    <label class="xxdd-label">Email</label>
+                                </div>
+                            </div>
+
+                            <div class="input-group xxdd-form">
+                                <div class="xxdd-line">
+                                    <input type="text" name="userName"  id="username" class="form-control">
+                                    <label class="xxdd-label">Username</label>
+                                </div>
+                            </div>
+                            <div class="input-group xxdd-form">
+                                <div class="xxdd-line">
+                                    <input type="password" name="password"  id="password" class="form-control">
+                                    <label class="xxdd-label">Password</label>
+                                </div>
+                            </div>
+                            <div class="input-group xxdd-form">
+                                <div class="xxdd-line">
+                                    <input type="password" name="passwordConf" autocomplete="off" id="password" class="form-control">
+                                    <label class="xxdd-label">Confirm Password</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-xxdd ripple-effect btn-warning btn-lg btn-block">Register</button>
+                        </div>
+                        <br/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+    <div class="wrapper">
+        <div class="container">
+            <h1>Login</h1>
+
+            <form class="form" action="/login" method="post">
+                <input type="text" name="logemail" placeholder="E-mail" required="">
+                <input type="password" name="logpassword" placeholder="Password" required="">
+                <button type="submit" id="login-button">Login</button>
+            </form>
+        </div>
+        <div class="container">
+            <h1>Reister</h1>
+
+            <form class="form" action="/login" method="post">
+                <input type="text" name="email" placeholder="E-mail" required="">
+                <input type="text" name="userName" placeholder="Username" required="">
+                <input type="password" name="password" placeholder="Password" required="">
+                <input type="password" name="passwordConf" placeholder="Confirm Password" required="">
+                <button type="submit" id="login-button">Login</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="clear"></div>
+    -->
+</div>
+<footer>
+    <% include footer %>
+</footer>
+
+
+
+<script type="text/javascript">
+    // ParticlesJS Config.
+    particlesJS("particlesBG", {
+        "particles": {
+            "number": {
+                "value": 80,
+                "density": {
+                    "enable": true,
+                    "value_area": 700
+                }
+            },
+            "color": {
+                "value": "#ffffff"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                },
+                "polygon": {
+                    "nb_sides": 5
+                },
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": false,
+                "anim": {
+                    "enable": false,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 3,
+                "random": true,
+                "anim": {
+                    "enable": false,
+                    "speed": 40,
+                    "size_min": 0.1,
+                    "sync": false
+                }
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#ffffff",
+                "opacity": 0.4,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 6,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": true,
+                    "mode": "grab"
+                },
+                "onclick": {
+                    "enable": true,
+                    "mode": "push"
+                },
+                "resize": true
+            },
+            "modes": {
+                "grab": {
+                    "distance": 140,
+                    "line_linked": {
+                        "opacity": 1
+                    }
+                },
+                "bubble": {
+                    "distance": 400,
+                    "size": 40,
+                    "duration": 2,
+                    "opacity": 8,
+                    "speed": 3
+                },
+                "repulse": {
+                    "distance": 200,
+                    "duration": 0.4
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+                "remove": {
+                    "particles_nb": 2
+                }
+            }
+        },
+        "retina_detect": true
+    });
+</script>
+<script>
+    (function ($) {
+
+        // Ripple-effect animation
+        $(".ripple-effect").click(function (e) {
+            var rippler = $(this);
+
+            rippler.append("<span class='ink'></span>");
+
+            var ink = rippler.find(".ink:last-child");
+            // prevent quick double clicks
+            ink.removeClass("animate");
+
+            // set .ink diametr
+            if (!ink.height() && !ink.width()) {
+                var d = Math.max(rippler.outerWidth(), rippler.outerHeight());
+                ink.css({
+                    height: d,
+                    width: d
+                });
+            }
+
+            // get click coordinates
+            var x = e.pageX - rippler.offset().left - ink.width() / 2;
+            var y = e.pageY - rippler.offset().top - ink.height() / 2;
+
+            // set .ink position and add class .animate
+            ink.css({
+                top: y + 'px',
+                left: x + 'px'
+            }).addClass("animate");
+
+            // remove ink after 1second from parent container
+            setTimeout(function(){
+                ink.remove();
+            },1000)
+        })
+
+
+
+// Ripple-effect-All animation
+        function fullRipper(color,time){
+            setTimeout(function(){
+                var rippler = $(".ripple-effect-All");
+                if(rippler.find(".ink-All").length == 0){
+                    rippler.append("<span class='ink-All'></span>");
+
+
+                    var ink = rippler.find(".ink-All");
+                    // prevent quick double clicks
+                    //ink.removeClass("animate");
+
+                    // set .ink diametr
+                    if (!ink.height() && !ink.width()) {
+                        var d = Math.max(rippler.outerWidth(), rippler.outerHeight());
+                        ink.css({
+                            height: d,
+                            width: d
+                        });
+                    }
+
+                    // get click coordinates
+                    var x =0;
+                    var y =rippler.offset().top - ink.height()/1.5;
+
+                    // set .ink position and add class .animate
+                    ink.css({
+                        top: y + 'px',
+                        left: x + 'px',
+                        background:color
+                    }).addClass("animate");
+
+                    rippler.css('z-index',2);
+
+                    setTimeout(function(){
+                        ink.css({
+                            '-webkit-transform': 'scale(2.5)',
+                            '-moz-transform': 'scale(2.5)',
+                            '-ms-transform': 'scale(2.5)',
+                            '-o-transform': 'scale(2.5)',
+                            'transform': 'scale(2.5)'
+                        })
+                        rippler.css('z-index',0);
+                    },1500);
+                }
+            },time)
+
+        }
+
+        // Form control border-bottom line
+        $('.xxdd-line .form-control').bind('focus',function(){
+            $(this).parent('.xxdd-line').addClass('xxdd-toggled').removeClass("hf");
+        }).bind('blur',function(){
+            var val=$(this).val();
+            if(val){
+                $(this).parent('.xxdd-line').addClass("hf");
+            }else{
+                $(this).parent('.xxdd-line').removeClass('xxdd-toggled');
+            }
+        })
+
+        // Change forms
+        $(".xxdd-switch-button").click(function(){
+            var _this=$(this);
+            if(_this.hasClass('active')){
+                setTimeout(function(){
+                    _this.removeClass('active');
+                    $(".ripple-effect-All").find(".ink-All").remove();
+                    $(".ripple-effect-All").css('z-index',0);
+                },1300);
+                $(".ripple-effect-All").find(".ink-All").css({
+                    '-webkit-transform': 'scale(0)',
+                    '-moz-transform': 'scale(0)',
+                    '-ms-transform': 'scale(0)',
+                    '-o-transform': 'scale(0)',
+                    'transform': 'scale(0)',
+                    'transition':'all 1.5s'
+                })
+                $(".ripple-effect-All").css('z-index',2);
+                $('#Register-form').addClass('form-hidden')
+                    .removeClass('animate');
+                $('#login-form').removeClass('form-hidden');
+            }else{
+                fullRipper("#8367C7",750);
+                _this.addClass('active');
+                setTimeout(function(){
+                    $('#Register-form').removeClass('form-hidden')
+                        .addClass('animate');
+                    $('#login-form').addClass('form-hidden');
+                },2000)
+
+            }
+        })
+    })(jQuery);
+</script>>
+
+</body>
+
+
+</html>

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../models/db');
+var db = require('../models/faker');
 /* GET users listing. */
 router.get('/users/:id', function(req, res, next) {
     var nameList = new Array();
