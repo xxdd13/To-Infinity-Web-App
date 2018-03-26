@@ -21,7 +21,7 @@ module.exports.fetchAllPosts = function(req, res) {
 };
 
 module.exports.login = function(req, res) {
-    res.render('login');
+    res.render('login',{user:((req.session.user)?(req.session.user): false)});
 };
 
 module.exports.loginReq = function(req, res,next) {
