@@ -43,8 +43,8 @@ app.use(session({
 
 
 
-var router = require('./routes/index');
-//var router = require('./routes/routes');
+//var router = require('./routes/index');
+var router = require('./routes/routes');
 
 
 
