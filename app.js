@@ -1,10 +1,10 @@
 var express = require('express');
-var createError = require('http-errors');
+//var createError = require('http-errors');
 var ejs  = require('ejs');
 var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var bodyParser = require('body-parser');
+//var cookieParser = require('cookie-parser');
+//var logger = require('morgan');
+//var bodyParser = require('body-parser');
 
 /*
 var mongoose = require('mongoose');
@@ -52,19 +52,19 @@ app.set('view engine', 'ejs');
 //use sessions for tracking logins
 
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(logger('dev'));
+//app.use(express.json());
+//app.use(express.urlencoded({ extended: false }));
+//app.use(cookieParser());
+//app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
 
 app.use('/', router);
 
 
 // parse incoming requests
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: false }));
 
 
 // catch 404 and forward to error handler
