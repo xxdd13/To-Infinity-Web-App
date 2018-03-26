@@ -6,7 +6,7 @@ const User = require('../models/user');
 router.get('/', controllers.index);
 router.get('/users', controllers.users);
 router.get('/login', controllers.login);
-
+//git remote add heroku  https://git.heroku.com/murmuring-inlet-97299.git
 router.post('/login',controllers.loginReq)
 
 
