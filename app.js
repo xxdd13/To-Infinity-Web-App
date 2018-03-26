@@ -5,6 +5,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+
+/*
 var mongoose = require('mongoose');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
@@ -28,6 +30,17 @@ db.once('open', function () {
     console.log('connected to database');
 });
 
+app.use(session({
+    secret: 'work hard',
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+        mongooseConnection: db
+    })
+}));
+
+
+*/
 var router = require('./routes/routes');
 
 var app = express();
@@ -37,14 +50,6 @@ app.engine('html', ejs.renderFile);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 //use sessions for tracking logins
-app.use(session({
-    secret: 'work hard',
-    resave: true,
-    saveUninitialized: false,
-    store: new MongoStore({
-        mongooseConnection: db
-    })
-}));
 
 
 app.use(logger('dev'));
@@ -79,4 +84,4 @@ app.listen(PORT, function(){
 
 
 
-module.exports = app;
+//module.exports = app;
