@@ -6,7 +6,6 @@ const User = require('../models/user');
 router.get('/', controllers.index);
 router.get('/users', controllers.users);
 router.get('/login', controllers.login);
-;
 
 router.post('/login',controllers.loginReq)
 

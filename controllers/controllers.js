@@ -1,8 +1,8 @@
 const faker = require('../models/faker');
 const User = require('../models/user');
 module.exports.index = function(req, res) {
-    //res.render('index',{user:((req.session.user)?(req.session.user): false)});
-    res.render('index',null);
+    res.render('index',{user:((req.session.user)?(req.session.user): false)});
+    //res.render('index',null);
 
 
 };
