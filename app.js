@@ -10,8 +10,17 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
 //connect to MongoDB
-mongoose.connect('mongodb://localhost/testForAuth');
-var db = mongoose.connection;
+const mongoURI = "mongodb+srv://info30005thursday:Info30005@cluster0-rcw4z.mongodb.net/testForAuth";
+mongoose.connection.on('connected', function() {
+    // Hack the database back to the right one, because when using mongodb+srv as protocol.
+    if (mongoose.connection.client.s.url.startsWith('mongodb+srv')) {
+        mongoose.connection.db = mongoose.connection.client.db('testForAuth');
+    }
+    console.log('Connection to MongoDB established.')
+});
+//mongoose.connect('mongodb://localhost/testForAuth');
+mongoose.connect(mongoURI);
+    var db = mongoose.connection;
 
 //handle mongo error
 db.on('error', console.error.bind(console, 'connection error:'));
