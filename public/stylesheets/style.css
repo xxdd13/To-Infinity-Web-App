@@ -159,3 +159,19 @@ label {
   font-size: 10px;
   font-weight: 400;
 }
+<<<<<<< HEAD
+=======
+
+.h1strong{
+  font-weight:800;
+  font-size:30px;
+}
+
+
+body
+{
+  background-color: #013A6B;
+  background-image: -webkit-linear-gradient(30deg, #FFA48E 50%, #D6C2E8 50%);
+  min-height:100vh;
+}
+>>>>>>> b33aea3cb0fe6fdec540104497222a8831b88286
