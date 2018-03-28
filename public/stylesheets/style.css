@@ -1,15 +1,47 @@
-a {
-  color: #00B7FF;
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Poiret+One|Shadows+Into+Light');
+
+html {
+    height: 100%;
 }
 
-body {
-  background: #F3F3F3;
-  color: #666666;
-  font-size: 14px;
-  font-family: 'Open Sans';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    font-weight: 400;
+    font-size: 100px;
+    text-align: center;
+    color: #C51350;
 }
+
+h2 {
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 30px;
+    color:#ECECEB;
+
+}
+
+
+body {
+    font-size: 150%;
+    background: linear-gradient(rgba(244,209,74,0.3), rgba(250,147,44,0.1)), url('https://source.unsplash.com/NhU0nUR7920/1600x900');
+    background-position: center;
+    background-size: cover;
+}
+
+
+.container {
+    padding: 50px 0;
+    text-align: center;
+    color: white;
+}
+
+.container2 {
+    padding: 25px 0;
+
+}
+
 
 input {
   display: block;
@@ -127,6 +159,3 @@ label {
   font-size: 10px;
   font-weight: 400;
 }
-
-
-
