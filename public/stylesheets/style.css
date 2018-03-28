@@ -128,5 +128,15 @@ label {
   font-weight: 400;
 }
 
+.h1strong{
+  font-weight:800;
+  font-size:30px;
+}
 
 
+body
+{
+  background-color: #013A6B;
+  background-image: -webkit-linear-gradient(30deg, #FFA48E 50%, #D6C2E8 50%);
+  min-height:100vh;
+}
