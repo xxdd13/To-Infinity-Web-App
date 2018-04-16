@@ -11,7 +11,11 @@ router.get('/login', controllers.login);
 router.post('/login',controllers.loginReq);
 
 router.get('/profile',controllers.profile);
-router.get('/logout',controllers.profile);
+router.get('/logout',controllers.logout);
+
+router.get('/ws', function(req, res, next) {
+    res.render('info30005_ws2_css');
+});
 
 
 

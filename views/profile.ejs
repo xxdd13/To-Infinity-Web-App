@@ -1,0 +1,65 @@
+<!-- views/users.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include head %>
+    <link rel="stylesheet" href="/stylesheets/profile.css"/>
+
+</head>
+<body>
+
+<header>
+    <% include nav %>
+</header>
+
+
+
+
+<main class="container">
+    <div class="jumbotron">
+
+
+        <div class="container-fluid">
+
+
+                    <div class="card">
+                        <!-- Header -->
+                        <div class="card-header">
+                            <div class="card-header__avatar" style="background:url(https://www.google.com.au/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png) ;  "></div>
+                                <a class="card-header__follow" href="#">Follow</a>
+                        </div>
+                        <!-- Content-->
+                        <div class="card-content">
+                            <div class="card-content__username"><%= user.email %></div>
+                            <div class="card-content__bio">Bio</div>
+                        </div>
+                        <!-- Footer-->
+                        <div class="card-footer">
+                            <div class="card-footer__pens"> <span>20</span>
+                                <div class="label">Age</div>
+                            </div>
+                            <div class="card-footer__followers"> <span>3</span>
+                                <div class="label">Events</div>
+                            </div>
+                            <div class="card-footer__following"> <span>Melbourne</span>
+                                <div class="label">Location</div><br><br><br>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="card-footer"><span>    some other stuff, tba later</span></div>
+                        -->
+                    </div>
+
+
+        </div>
+    </div>
+</main>
+
+<footer>
+    <% include footer %>
+</footer>
+
+</body>
+</html>
+

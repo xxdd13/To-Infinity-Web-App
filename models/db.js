@@ -16,4 +16,4 @@ db.once('open', function () {
     console.log('mongodb connection okay');
 });
 
-module.exports= db;
+//module.exports= db;

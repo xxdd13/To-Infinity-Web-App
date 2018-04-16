@@ -1,7 +1,7 @@
 const faker = require('../models/faker');
 const User = require('../models/user');
 module.exports.index = function(req, res) {
-    res.render('index',{user:((req.session.user)?(req.session.user): false)});
+    res.render('index',{user:((req.session.user)?(req.session.user): false),user: req.user});
     //res.render('index',null);
 
 
@@ -51,7 +51,7 @@ module.exports.loginReq = function(req, res,next) {
                 return next(error);
             } else {
                 req.session.userId = user._id;
-                return res.redirect('/');
+                return res.redirect('/profile');
             }
         });
 
@@ -64,7 +64,8 @@ module.exports.loginReq = function(req, res,next) {
             } else {
                 req.session.userId = user._id;
                 req.session.user = user;
-                return res.redirect('/');
+                console.log(user);
+                res.redirect('/');
             }
         });
     } else {
@@ -79,20 +80,22 @@ module.exports.profile = function(req, res) {
     User.findById(req.session.userId)
         .exec(function (error, user) {
             if (error) {
+                console.log("error");
                 return next(error);
             } else {
                 if (user === null) {
                     var err = new Error('Not authorized! Go back!');
+                    console.log("user null");
                     err.status = 400;
                     return next(err);
                 } else {
-                    return res.send('<h1>Name: </h1>' + user.username + '<h2>Mail: </h2>' + user.email + '<br><a type="button" href="/logout">Logout</a>')
+                    return res.render('profile',{user:user})
                 }
             }
         });
 };
 
-module.exports.profile = function(req, res) {
+module.exports.logout = function(req, res) {
     if (req.session) {
         // delete session object
         req.session.destroy(function (err) {
