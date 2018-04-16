@@ -62,7 +62,7 @@ app.get('/account', ensureAuthenticated, function(req, res){
     res.render('account', { user: req.user });
 });
 //Passport Router
-app.get('/auth/facebook', passport.authenticate('facebook'),{ scope: 'read_stream' });
+app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
         successRedirect : '/',
@@ -114,9 +114,9 @@ app.use(function(req, res, next) {
 });
 
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, function(){
-    console.log("Starting server at 8000");
+    console.log("Starting server at 3000");
 });
 
 
