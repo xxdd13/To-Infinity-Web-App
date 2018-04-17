@@ -75,25 +75,31 @@ module.exports.loginReq = function(req, res,next) {
     }
 };
 
-
+/*
 module.exports.profile = function(req, res) {
-    User.findById(req.session.userId)
-        .exec(function (error, user) {
-            if (error) {
-                console.log("error");
-                return next(error);
-            } else {
-                if (user === null) {
-                    var err = new Error('Not authorized! Go back!');
-                    console.log("user null");
-                    err.status = 400;
-                    return next(err);
-                } else {
-                    return res.render('profile',{user:user})
-                }
-            }
-        });
+
+  User.findById(req.session.userId)
+      .exec(function (error, user) {
+          if (error) {
+              console.log("error");
+              return next(error);
+          } else {
+              if (user === null) {
+                  var err = new Error('Not authorized! Go back!');
+                  console.log("user null");
+                  err.status = 400;
+                  return next(err);
+              } else {
+                  return res.render('profile',{user:user})
+              }
+          }
+      });
+
+
+
+
 };
+  */
 
 module.exports.logout = function(req, res) {
     if (req.session) {
@@ -109,11 +115,4 @@ module.exports.logout = function(req, res) {
 };
 
 
-/*
-module.exports.fetchPost = function(req, res) {
-    constpost = posts[req.params.id];
-    res.render('post_template', {
-        post: post
-    });
-};
-*/
+

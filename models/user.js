@@ -2,28 +2,58 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
 var UserSchema = new mongoose.Schema({
+    oauthID:{
+        type:Number,
+        unique: true,
+        index:true
+    },
+    created: Date,
     email: {
         type: String,
         unique: true,
-        required: true,
+        required: false,
         trim: true
     },
     username: {
         type: String,
         unique: true,
-        required: true,
+        required: false,
+        trim: true
+    },
+    name: {
+        type: String,
+        unique: false,
+        required: false,
+        trim: true
+    },
+    location: {
+        type: String,
+        unique: false,
+        required: false,
+        trim: true
+    },
+    bio: {
+        type: String,
+        unique: false,
+        required: false,
         trim: true
     },
     password: {
         type: String,
-        required: true,
+        required: false,
     },
     passwordConf: {
         type: String,
-        required: true,
+        required: false,
+    },
+    avatar:{
+        type:String
     }
+
 });
 
+
+/*
 //authenticate input against database
 UserSchema.statics.authenticate = function (email, password, callback) {
     User.findOne({ email: email })
@@ -57,7 +87,7 @@ UserSchema.pre('save', function (next) {
     })
 });
 
-
+*/
 var User = mongoose.model('User', UserSchema);
 module.exports = User;
 
