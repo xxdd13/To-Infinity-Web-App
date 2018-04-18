@@ -53,82 +53,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-// Use the FacebookStrategy within Passport.
-
-/*
-passport.use(new FacebookStrategy({
-        clientID: config.facebook_api_key,
-        clientSecret:config.facebook_api_secret ,
-        callbackURL: 'https://localhost:3000/login/facebook/return'
-    },
-    function(accessToken, refreshToken, profile, cb) {
-        process.nextTick(function () {
-            //Check whether the User exists or not using profile.id
-            //Further DB code.
-            return cb(null, profile);
-        });
-    }
-));
-
-
-
-passport.use(new FacebookStrategy({
-        clientID: config.facebook_api_key,
-        clientSecret:config.facebook_api_secret ,
-        callbackURL: 'https://localhost:3000/login/facebook/return',
-        profileFields:['id','displayName','emails']
-    }, function(accessToken, refreshToken, profile, cb) {
-        console.log(profile);
-        var currentUser = new User({
-            email:profile.emails[0].value,
-            name:profile.displayName
-        });
-
-
-        User.findOne({email:currentUser.email}, function(err, profile) {
-            if(!profile) {
-                currentUser.save(function(err, currentUser) {
-                    if(err) return cb(err);
-                    cb(null,currentUser);
-                });
-            } else {
-                console.log(profile);
-                cb(null, profile);
-            }
-        });
-    }
-));
-
-passport.serializeUser(function(user, cb) {
-    console.log(user);
-    cb(null, user._id);
-});
-
-passport.deserializeUser(function(obj, cb) {
-    User.findById(id, function(err, user) {
-        cb(err, user);
-    });
-
-});
-
-
-
-
-app.get('/login/facebook',
-    passport.authenticate('facebook'));
-
-app.get('/login/facebook/return',
-    passport.authenticate('facebook', { failureRedirect: '/login' }),
-    function(req, res) {
-        res.redirect('/');
-    });
-
-
-*/
-
-
-
-
 
 passport.serializeUser(function(user, done) {
     console.log('serializeUser: ' + user._id);
@@ -202,16 +126,16 @@ function ensureAuthenticated(req, res, next) {
 
 
 const PORT = process.env.PORT || 3000;
-/*
+
 app.listen(PORT, function(){
     console.log("Starting server at 3000");
 });
 
-*/
+/* local deve only!!!!!!!!!!
 
 https.createServer({
     key: fs.readFileSync('public/key.pem'),
     cert: fs.readFileSync('public/cert.pem')
 }, app).listen(PORT);
-
+*/
 module.exports = app;
