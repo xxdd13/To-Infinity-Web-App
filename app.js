@@ -127,15 +127,19 @@ function ensureAuthenticated(req, res, next) {
 
 const PORT = process.env.PORT || 3000;
 
+
+//use this section for heroku
 app.listen(PORT, function(){
     console.log("Starting server at 3000");
 });
 
-/* local deve only!!!!!!!!!!
+/* important ! !!! use this for local deve only!!!!!!!!!!
 
 https.createServer({
     key: fs.readFileSync('public/key.pem'),
     cert: fs.readFileSync('public/cert.pem')
 }, app).listen(PORT);
 */
+
+
 module.exports = app;
