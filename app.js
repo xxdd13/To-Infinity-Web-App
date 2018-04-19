@@ -92,7 +92,15 @@ app.get('/auth/facebook/callback',
         res.redirect('/profile');
     });
 
-
+app.get('/eventX', function(req, res) {
+    User.findById(req.session.passport.user, function(err, user) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render('eventX', { user: user});
+        }
+    });
+});
 
 
 
@@ -129,17 +137,16 @@ const PORT = process.env.PORT || 3000;
 
 
 //use this section for heroku
+/*
 app.listen(PORT, function(){
     console.log("Starting server at 3000");
 });
-
-/* important ! !!! use this for local deve only!!!!!!!!!!
+*/
 
 https.createServer({
     key: fs.readFileSync('public/key.pem'),
     cert: fs.readFileSync('public/cert.pem')
 }, app).listen(PORT);
-*/
 
 
 module.exports = app;
