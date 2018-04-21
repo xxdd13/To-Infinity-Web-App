@@ -6,7 +6,7 @@ a {
 }
 
 body {
-  background-color: #FCEEE3 !important;
+  background-color: #ffffff;
   color: #666666;
   font-size: 14px;
   font-family: 'Open Sans';
@@ -142,7 +142,8 @@ label {
 
 .index-body
 {
-  background-color: #ffb54c;
+  color:black;
+  background-color: #efefef;
   //background-image: -webkit-linear-gradient(30deg, #FFA48E 50%, #D6C2E8 50%);
   background-size:auto 100%;
   background-size:cover;
@@ -190,8 +191,5 @@ label {
 
 
 }
-.dropdown-menu li{
-  max-width:120px;
 
-}
 

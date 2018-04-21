@@ -4,7 +4,7 @@
 }
 
 body {
-    background-image: linear-gradient(to top, #c9f3ff, #91e9ff);
+    background-image: linear-gradient(to top, rgba(201, 243, 255, 0.13), rgba(145, 233, 255, 0.09));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 

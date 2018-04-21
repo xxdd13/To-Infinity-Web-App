@@ -5,8 +5,8 @@
 }
 
 body {
-  color: #555;
-  background: #222;
+  color: #000;
+  background: #fff;
   text-align: center;
   font-weight: Bold;
 }
@@ -134,9 +134,19 @@ body {
   user-select: none;
   -webkit-animation-name: reveal-text;
   animation-name: reveal-text;
-  color: #FFF;
+  color: #000;
   white-space: nowrap;
   cursor: default
 
 }
 
+.card {
+  background: #FFFFFF;
+  width: 100%;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  margin-bottom:60px;
+  overflow: hidden;
+}

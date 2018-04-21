@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css?family=Caveat');
+
+/* Background */
+.background {
+    background-color: #F3F3F3;
+
+}
+
+
+/* Text displayed before Cards */
+.remark{
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    margin-bottom: 15px;
+    margin-top: 100px;
+
+}
+
+.event-card {
+    height: 50%;
+    margin-top: 30px;
+
+}
+
+/* Event Card Profile (name) */
+.event-profile {
+    color: #E22F7B;
+    margin-left: 70px;
+    margin-top: 10px;
+
+}
+
+/* Event Card Profile Picture */
+.event-profile-pic{
+    background: #D8D8D8;
+    border: 3px solid #E11F58;
+    border-radius: 50%;
+    float: left;
+}
+
+/* Event Card Title */
+.event-title{
+    font-family: OpenSans-Regular;
+    font-size: 35px;
+    color: #000000;
+}
+
+/* Event Card Created Date and Time */
+.event-dt {
+    font-family: OpenSans-Light;
+    font-size: 11px;
+    color: #4A4A4A;
+
+    margin-bottom: 30px;
+
+}
+
+/* Event DLC (Date, Location and Contact) */
+.event-dlc {
+    font-family: OpenSans-Regular;
+    font-size: 14px;
+    color: #4A4A4A;
+    line-height: 25px;
+
+}
+
+.event-info {
+    display: block;
+
+}
+
+.event-d {
+    margin-right: 30px;
+}
+
+.event-l {
+    margin-right: 68px
+}
+
+.event-c {
+    margin-right: 76px;
+}
+
+.centering {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
+/* Event Card Date */
+.lefting {
+    float: left;
+    clear: left;
+}
+
+.righting {
+    float: right;
+    clear: right;
+}
+
+
+
+/* More Info Button */
+.info-but {
+    margin-top: 20px;
+    margin-bottom: 0px;
+
+}
+
+
+/* Buttons Join Like */

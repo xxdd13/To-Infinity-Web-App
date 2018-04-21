@@ -5,84 +5,163 @@
 <head>
     <% include head %>
     <title>To infinity</title>
-    <link rel="stylesheet" href="stylesheets/style.css">
+
     <link rel="stylesheet" href="stylesheets/index.css">
-    <link rel="stylesheet" href="/stylesheets/loginstyle.css"/>
+    <link rel="stylesheet" href="stylesheets/cardstyle.css">
+
 </head>
 <body class="index-body">
-<div id="particlesBG" class="bgBlue"></div>
-<script src="/javascripts/particles.js"></script>
+
 <header>
     <% include nav %>
 </header>
 
 <main class="container">
-    <h1 class="fttext">
-        Featuring!
-    </h1>
-    <div class="flip ffull">
-        <div class="front ffull" style="background-image: url(http://blog.runningwarehouse.com/wp-content/uploads/2015/10/ASICS-Kayano-22-e1444773272100.jpg)">
-            <h1 class="text-shadow bh1">Mountain Hiking</hi>
-        </div>
-        <div class="back ffull">
-            <h2>Mountain Hiking</h2>
-            <p class= ffullp>
-                3 am, mustang speedin'<br>
-                Two lovers, headed for a dead end<br>
-                Too fast, hold tight, he laughs<br>
-                Runnin' through the red lights<br>
-                Hollerin' over, rubber spinnin'<br>
-                Big swig, toss another beer can<br>
-                Too lit, tonight, prayin'<br>
-                On the moonlight<br>
-            </p>
-        </div>
-    </div>
 
 
-    <div class="flip">
-        <div class="front" style="background-image: url(https://showbizinsider.ph/wp-content/uploads/2018/04/04022018-pageone-lv-archlight.jpg)">
-            <h1 class="text-shadow">Running</hi>
+        <!-- Top Remark -->
+        <div class="container">
+            <h1 class="remark centering">Recommended for you</h1>
         </div>
-        <div class="back">
-            <h2>Running</h2>
-            <p>Can't read my,<br>
-                Can't read my<br>
-                No he can't read my poker face<br>
-                (she's got me like nobody)<br>
 
-            </p>
+        <!-- 1st Card -->
+        <div class="card event-card centering">
+
+            <!-- Profile -->
+            <div class="card-header">
+
+                <div class="lefting">
+
+                    <div>
+                        <img src="https://source.unsplash.com/HfFSE4-zCPM/50x50" alt="headshot" class="event-profile-pic">
+
+                    </div>
+                    <div class="event-profile">
+                        <h5>Will Street</h5>
+                        <h10 class="event-dt"> April 10 at 10.05 am</h10>
+                    </div>
+
+                </div>
+
+                <div class="righting">
+                    <input type="image" href="/" src="https://image.ibb.co/fv6tBn/correct_button.png" class="btn join">
+
+                    <input type="image" href="/" src="https://image.ibb.co/drsBxS/star_button.png" class="btn fav">
+
+                </div>
+
+            </div>
+            <!-- Body -->
+            <div class="card-body">
+                <h1 class="card-title event-title">Mountain Climbing this Sunday!</h1>
+                <img class="card-img-top" src="https://source.unsplash.com/rJNxgIgecqQ/500x400" alt="headshot">
+                <div class="text-center">
+                    <a href="#" class="btn btn-outline-primary info-but">More Information</a>
+                </div>
+            </div>
+
+            <!-- Info -->
+            <div class="card-footer event-dlc">
+                <div class="centering">
+                        <span class="event-info">
+                            <h8 class="event-d">Date and Time</h8>
+                            <h8>Sunday, 7th April 2018, 6.00 am</h8>
+                        </span>
+                    <span class="event-info">
+                            <h8 class="event-l">Location</h8>
+                            <h8>123, Bourke Street, Melbourne CBD, VIC 3051</h8>
+                        </span>
+                    <span class="event-info">
+                            <h8 class="event-c">Contact</h8>
+                            <h8>6422222251</h8>
+                            <h8>will.street@gmail.com</h8>
+                        </span>
+
+                </div>
+            </div>
+
         </div>
-    </div>
-    <div class="flip">
-        <div class="front" style="background-image: url(https://static01.nyt.com/images/2017/04/09/well/9minute-workout-promo/9minute-workout-promo-jumbo.png)">
-            <h1 class="text-shadow">Workout</hi>
+
+        <!-- 2nd Card -->
+        <div class="card event-card centering">
+
+            <!-- Profile -->
+            <div class="card-header">
+                <img src="https://source.unsplash.com/HfFSE4-zCPM/50x50" alt="headshot" class="event-profile-pic">
+                <h5 class="event-profile">Will Street</h5>
+                <h10 class="event-dt"> April 10 at 10.05 am</h10>
+            </div>
+
+            <!-- Body -->
+            <div class="card-body">
+                <h1 class="card-title event-title">Mountain Climbing this Sunday!</h1>
+                <img class="card-img-top" src="https://source.unsplash.com/rJNxgIgecqQ/500x400" alt="headshot">
+                <a href="#" class="btn btn-outline-primary">More</a>
+            </div>
+
+            <!-- Info -->
+            <div class="card-footer event-dlc">
+                <div class="centering">
+                    <span class="event-d">Date</span>
+                    <span class="event-dr">Sunday, 7th April 2018, 6.00 am</span>
+
+                    <span class="event-l">Location</span>
+                    <span class="event-lr">123, Bourke Street, Melbourne CBD, VIC 3051</span>
+
+                    <span class="event-c">Contact</span>
+                    <span class="event-cr">+6422222251</span>
+                    <span class="event-cr">will.street@gmail.com</span>
+                </div>
+            </div>
+
         </div>
-        <div class="back">
-            <h2>Workout</h2>
-            <p>Rah-rah-ah-ah-ah-ah!<br>
-                Roma-roma-mamaa!<br>
-                Ga-ga-ooh-la-la!<br>
-                Want your bad romance<br></p>
+
+
+        <!-- 3rd Card -->
+        <div class="card event-card centering">
+
+            <!-- Profile -->
+            <div class="card-header">
+                <img src="https://source.unsplash.com/HfFSE4-zCPM/50x50" alt="headshot" class="event-profile-pic">
+                <h5 class="event-profile">Will Street</h5>
+                <h10 class="event-dt"> April 10 at 10.05 am</h10>
+            </div>
+
+            <!-- Body -->
+            <div class="card-body">
+                <h1 class="card-title event-title">Mountain Climbing this Sunday!</h1>
+                <img class="card-img-top" src="https://source.unsplash.com/rJNxgIgecqQ/500x400" alt="headshot">
+                <a href="#" class="btn btn-outline-primary">More</a>
+            </div>
+
+            <!-- Info -->
+            <div class="card-footer event-dlc">
+                <div class="centering">
+                    <span class="event-d lefting">Date</span>
+                    <span class="righting">Sunday, 7th April 2018, 6.00 am</span>
+
+                    <span class="event-l lefting">Location</span>
+                    <span class="right">123, Bourke Street, Melbourne CBD, VIC 3051</span>
+
+                    <span class="event-c lefting">Contact</span>
+                    <div class="righting">
+                        <span>+6422222251</span>
+                        <span>will.street@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </div>
-    <div class="flip">
-        <div class="front" style="background-image: url(http://www.livedesignonline.com/sites/livedesignonline.com/files/styles/article_featured_standard/public/TAIT%20-%20Lady%20Gaga%20-%20Joanne%20World%20Tour%202017%2014-1.jpg?itok=UkZ0g940">
-            <h1 class="text-shadow">Rave</hi>
-        </div>
-        <div class="back">
-            <h2>Rave</h2>
-            <p>Hear my sinner's prayer<br>
-                It's the only one I know<br>
-                It sure as hell don't rhyme<br>
-                But it's as good as, good as, good as, good as gold</p>
-        </div>
-    </div>
+
+
+
+
+
 </main>
 
 <footer>
     <% include footer %>
 </footer>
-<script src="/javascripts/ptcConfig.js"></script>
+
 </body>
 </html>

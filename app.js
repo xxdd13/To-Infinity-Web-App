@@ -92,7 +92,7 @@ app.get('/auth/facebook/callback',
         res.redirect('/profile');
     });
 
-app.get('/eventX', function(req, res) {
+app.get('/eventX', ensureAuthenticated,function(req, res) {
     User.findById(req.session.passport.user, function(err, user) {
         if(err) {
             console.log(err);
