@@ -143,8 +143,7 @@ label {
 .index-body
 {
   background-color: #ffb54c;
-//background-image: -webkit-linear-gradient(30deg, #FFA48E 50%, #D6C2E8 50%);
-  background-image: url(https://source.unsplash.com/NhU0nUR7920/1600x900);
+  //background-image: -webkit-linear-gradient(30deg, #FFA48E 50%, #D6C2E8 50%);
   background-size:auto 100%;
   background-size:cover;
   min-height:100vh;
@@ -183,6 +182,16 @@ label {
   padding: 50px 0;
   text-align: center;
   color: white;
+
+}
+
+.dropdown-menu{
+  background-image: -webkit-linear-gradient(top,#3c3c3c 0,#222 100%);
+
+
+}
+.dropdown-menu li{
+  max-width:120px;
 
 }
 

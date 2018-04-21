@@ -8,9 +8,7 @@ body {
   color: #555;
   background: #222;
   text-align: center;
-  font-family: 'Source Sans Pro';
   font-weight: Bold;
-  padding: 1em;
 }
 
 .flip {
@@ -80,9 +78,9 @@ body {
 
 .ffull {
   width: 100%;
-  max-width:999px;
+  max-width:900px;
   left: 0%;
-  min-height: 500px;
+  min-height: 450px;
 }
 
 .text-shadow {
@@ -103,15 +101,15 @@ body {
 }
 
 .ffullp {
-  font-size: 30px !important;
+  font-size: 20px !important;
 }
 
 .bh1 {
   font-family: 'IBM Plex Sans', sans-serif !important;
-  font-size: 80px !important;
-  margin-top: 200px;
+  font-size: 60px !important;
+  margin-top: 150px;
   letter-spacing: 8px;
-  text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+
 }
 
 .before-card{
@@ -123,3 +121,22 @@ body {
   text-align:left;
 
 }
+
+
+
+.fttext {
+  position: relative;
+  font-size: 40px;
+  display: block;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-animation-name: reveal-text;
+  animation-name: reveal-text;
+  color: #FFF;
+  white-space: nowrap;
+  cursor: default
+
+}
+
