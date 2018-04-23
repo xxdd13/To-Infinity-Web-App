@@ -10,9 +10,8 @@ var UserSchema = new mongoose.Schema({
     created: Date,
     email: {
         type: String,
-        unique: true,
-        required: false,
-        trim: true
+        unique: false,
+        required: false
     },
     username: {
         type: String,

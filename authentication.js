@@ -12,7 +12,7 @@ module.exports = passport.use(new FacebookStrategy({
     function(accessToken, refreshToken, profile, done) {
         User.findOne({ oauthID: profile.id }, function(err, user) {
             if(err) {
-                console.log(err);  // handle errors!
+                console.log("user fond one error "+err);  // handle errors!
             }
             if (!err && user !== null) {
                 console.log("found user   "+user.OauthID);
@@ -20,16 +20,15 @@ module.exports = passport.use(new FacebookStrategy({
             } else {
                 user = new User({
                     oauthID: profile.id,
-                    //email:profile.email,
                     name: profile.displayName,
                     created: Date.now(),
                     avatar: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg'
                 });
                 user.save(function(err) {
                     if(err) {
-                        console.log(err);  // handle errors!
+                        console.log("user save error "+ err);  // handle errors!
                     } else {
-                        console.log("saving user ..." +user.displayName);
+                        console.log("saving user ..." +user.name +user.oauthID);
 
                         done(null, user);
                     }

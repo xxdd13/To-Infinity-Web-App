@@ -25,7 +25,7 @@ const mongoURI = "mongodb+srv://info30005thursday:Info30005@cluster0-rcw4z.mongo
 mongoose.connection.on('connected', function() {
     // makes sure we are not connecting to admin database
     if (mongoose.connection.client.s.url.startsWith('mongodb+srv')) {
-        mongoose.connection.db = mongoose.connection.client.db('testForAuth');
+        mongoose.connection.db = mongoose.connection.client.db('fbAuth');
     }
 });
 //mongoose.connect('mongodb://localhost/testForAuth');
@@ -71,6 +71,7 @@ app.get('/d', function(req, res){
         console.log('collection removed');
         res.redirect('/profile');
     });
+    User.collection.dropIndexes();
 
 
 });
@@ -135,18 +136,19 @@ function ensureAuthenticated(req, res, next) {
 
 const PORT = process.env.PORT || 3000;
 
-
+/*
+//use this section for local host
 https.createServer({
     key: fs.readFileSync('public/key.pem'),
     cert: fs.readFileSync('public/cert.pem')
 }, app).listen(PORT);
 
+*/
 
-/*
 //use this section for heroku
 app.listen(PORT, function(){
     console.log("Starting server at 3000");
 });
-*/
+
 
 module.exports = app;
