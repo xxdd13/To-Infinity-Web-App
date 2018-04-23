@@ -21,7 +21,7 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-
+                        <!-- If there's no User Object -->
                         <% if (!user) { %>
                         <li>
 
@@ -31,10 +31,15 @@
                             <ul class="dropdown-menu">
                                 <li><a href="/auth/facebook"><img src="images/fb-login.jpg" width="100" height="20"></a></li>
                             </ul>
+
+
+                            <!-- If there's User Object -->
                         <% } else { %>
                         <li><a href="/profile">Hello, <%= user.name %></a></li>
                         <% } %>
 
+
+                        <!-- If there is a User Object --> 
                         <%if(locals.user) {%>
 
                         <li><a href="/logout">Log Out</a></li>
