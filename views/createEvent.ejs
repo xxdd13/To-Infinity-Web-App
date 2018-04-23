@@ -1,0 +1,33 @@
+<!-- views/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include head %>
+    <title>To infinity</title>
+
+</head>
+<body>
+
+<header>
+    <% include nav %>
+</header>
+
+<main class="container">
+
+    <form action='/upload' enctype="multipart/form-data" method="POST">
+        Select a background image
+        <input type="file" name="fileUploaded" style="width:200px">
+        <input type="submit" name="submitEvent">
+    </form>
+
+
+
+</main>
+
+<footer>
+    <% include footer %>
+</footer>
+
+</body>
+</html>

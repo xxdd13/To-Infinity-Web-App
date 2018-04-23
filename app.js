@@ -1,6 +1,6 @@
 //heroku  https://git.heroku.com/murmuring-inlet-97299.git
 
-const dev = 0;  // Local = 1
+const dev = 1;  // Local = 1
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -22,6 +22,11 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const router = require('./routes/routes');
 const fbAuth = require('./authentication.js');
+var multer  = require('multer');
+
+
+
+
 
 // Connects MongoDB
 const mongoURI = "mongodb+srv://info30005thursday:Info30005@cluster0-rcw4z.mongodb.net/auth";
@@ -131,6 +136,50 @@ app.get('/eventX', ensureAuthenticated,function(req, res) {
 app.get('/needlogin',function(req, res) {
     res.render('flogin', { user: null});
 });
+
+app.get('/create-event', ensureAuthenticated, function(req, res){
+    User.findById(req.session.passport.user, function(err, user) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render('createEvent', { user: user});
+        }
+    });
+
+});
+/*
+app.post('/create-event', upload.array('image', 5), (req, res, next) => {
+  const images = req.files.map((file) => {
+    return {
+      filename: file.filename,
+      originalname: file.originalname
+    }
+  })
+  Image.insertMany(images, (err, result) => {
+    if (err) return res.sendStatus(404)
+    res.json(result)
+  })
+})
+*/
+// get image with id
+var busboy = require('connect-busboy');
+app.use(busboy());
+app.post('/upload',function (req, res, next) {
+
+        var fstream;
+        req.pipe(req.busboy);
+        req.busboy.on('file', function (fieldname, file, filename) {
+            console.log("Uploading: " + filename);
+
+            //Path where image will be uploaded
+            fstream = fs.createWriteStream(__dirname + '/img/' + filename);
+            file.pipe(fstream);
+            fstream.on('close', function () {
+                console.log("Upload Finished of " + filename);
+                res.redirect('back');           //where to go next
+            });
+        });
+    });
 
 
 
