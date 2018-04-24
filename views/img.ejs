@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>App</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1>Upload Image</h1>
+<p>Welcome to App</p>
+<div>
+    <% images.forEach((Image) => { %>
+    <a href="/img/<%= Image.id %>" class="list-group-item">
+        <h4 class="list-group-item-heading"><%= Image.text %></h4>
+    </a>
+    <% }) %>
+</div>
+<br><br>
+<form action="/upload" method="post" enctype="multipart/form-data">
+    <p>
+        Text :
+        <input type="text" name="text">
+    </p>
+    <p>
+        <input type="file" name="img">
+    </p>
+    <p>
+        <input type="submit" name="submit" value="submit">
+    </p>
+</form>
+</body>
+</html>

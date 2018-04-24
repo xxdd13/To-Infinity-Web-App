@@ -20,6 +20,13 @@ module.exports.fetchAllPosts = function(req, res) {
     res.send("posts obj");
 };
 
+module.exports.needLogin = function(req, res) {
+    return res.render('flogin', { user: null});
+};
+
+
+
+
 module.exports.login = function(req, res) {
     res.render('login',{user:((req.session.user)?(req.session.user): false)});
 };
@@ -75,31 +82,25 @@ module.exports.loginReq = function(req, res,next) {
     }
 };
 
-/*
+
 module.exports.profile = function(req, res) {
 
-  User.findById(req.session.userId)
-      .exec(function (error, user) {
-          if (error) {
-              console.log("error");
-              return next(error);
-          } else {
-              if (user === null) {
-                  var err = new Error('Not authorized! Go back!');
-                  console.log("user null");
-                  err.status = 400;
-                  return next(err);
-              } else {
-                  return res.render('profile',{user:user})
-              }
-          }
-      });
+    User.findById(req.session.passport.user, function(err, user) {
+
+        // Error
+        if(err) {
+            console.log(err);
+
+        } else {
+            res.render('profile', { user: user});
+        }
+    });
 
 
 
 
 };
-  */
+
 
 module.exports.logout = function(req, res) {
     if (req.session) {
@@ -114,5 +115,42 @@ module.exports.logout = function(req, res) {
     }
 };
 
+module.exports.deleteAll = function(req, res) {
+    User.remove({}, function(err) {
+        console.log('collection removed');
+        User.collection.dropIndexes();
+        User.collection.drop();
+    });
+};
 
+
+module.exports.deleteAll = function(req, res) {
+    User.remove({}, function(err) {
+        console.log('collection removed');
+        User.collection.dropIndexes();
+        User.collection.drop();
+    });
+};
+
+
+
+module.exports.eventX = function(req, res) {
+    User.findById(req.session.passport.user, function(err, user) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render('eventX', { user: user});
+        }
+    });
+};
+
+module.exports.create_event = function(req, res) {
+    User.findById(req.session.passport.user, function(err, user) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render('createEvent', { user: user});
+        }
+    });
+};
 

@@ -15,10 +15,13 @@
 
 <main class="container">
 
-    <form action='/upload' enctype="multipart/form-data" method="POST">
-        Select a background image
-        <input type="file" name="fileUploaded" style="width:200px">
-        <input type="submit" name="submitEvent">
+    <form ref='uploadForm'
+           id='uploadForm'
+           action='/upload'
+           method='post'
+           encType="multipart/form-data">
+        <input type="file" name="img" />
+        <input type='submit' value='Upload!' />
     </form>
 
 

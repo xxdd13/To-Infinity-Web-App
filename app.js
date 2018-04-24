@@ -1,13 +1,13 @@
 //heroku  https://git.heroku.com/murmuring-inlet-97299.git
 
-const dev = 0;  // Local = 1, heroku = 0   don't forget to change config.js in /configertion
+const dev = 1;  // Local = 1, heroku = 0   don't forget to change config.js in /configertion
 
 const express = require('express');
 const mongoose = require('mongoose');
 const config = require('./configuration/config');
 const app = express();
 const createError = require('http-errors');
-var fs = require('fs');
+const fs = require('fs');
 https = require('https');
 const ejs  = require('ejs');
 const path = require('path');
@@ -18,12 +18,12 @@ const passport = require('passport');
 
 //const FacebookStrategy = require('passport-facebook').Strategy;
 const User = require('./models/user');
+const Image = require('./models/Image');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const router = require('./routes/routes');
 const fbAuth = require('./authentication.js');
-var multer  = require('multer');
-
+const fileUpload = require('express-fileupload');
 
 
 
@@ -79,36 +79,6 @@ passport.deserializeUser(function(id, done) {
 });
 
 
-
-// Find all the Users and Delete
-app.get('/d', function(req, res){
-    User.remove({}, function(err) {
-        console.log('collection removed');
-        User.collection.dropIndexes();
-        User.collection.drop();
-
-
-    });
-
-
-
-});
-
-// Call the Profile page
-// ensureAuthenticated: Ensures you logged in
-app.get('/profile', ensureAuthenticated, function(req, res){
-    User.findById(req.session.passport.user, function(err, user) {
-
-        // Error
-        if(err) {
-            console.log(err);
-
-        } else {
-            res.render('profile', { user: user});
-        }
-    });
-});
-
 // Authenticating with Facebook (When clicking on the link)
 // Uses passport to authenticate (simplifying it)
 app.get('/auth/facebook',
@@ -124,66 +94,65 @@ app.get('/auth/facebook/callback',
         res.redirect('/profile');
     });
 
-// Event page
-app.get('/eventX', ensureAuthenticated,function(req, res) {
-    User.findById(req.session.passport.user, function(err, user) {
-        if(err) {
-            console.log(err);
-        } else {
-            res.render('eventX', { user: user});
-        }
-    });
-});
 
 
-// Event page
-app.get('/needlogin',function(req, res) {
-    res.render('flogin', { user: null});
-});
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
 
-app.get('/create-event', ensureAuthenticated, function(req, res){
-    User.findById(req.session.passport.user, function(err, user) {
-        if(err) {
-            console.log(err);
-        } else {
-            res.render('createEvent', { user: user});
-        }
-    });
-
-});
-/*
-app.post('/create-event', upload.array('image', 5), (req, res, next) => {
-  const images = req.files.map((file) => {
-    return {
-      filename: file.filename,
-      originalname: file.originalname
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "uploads/");
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
     }
-  })
-  Image.insertMany(images, (err, result) => {
-    if (err) return res.sendStatus(404)
-    res.json(result)
-  })
-})
-*/
-// get image with id
-var busboy = require('connect-busboy');
-app.use(busboy());
-app.post('/upload',function (req, res, next) {
+});
 
-        var fstream;
-        req.pipe(req.busboy);
-        req.busboy.on('file', function (fieldname, file, filename) {
-            console.log("Uploading: " + filename);
+var upload = multer({storage: storage}).single('img');
 
-            //Path where image will be uploaded
-            fstream = fs.createWriteStream(__dirname + '/img/' + filename);
-            file.pipe(fstream);
-            fstream.on('close', function () {
-                console.log("Upload Finished of " + filename);
-                res.redirect('back');           //where to go next
-            });
+app.post('/upload', (req, res) => {
+    upload(req, res, (err) => {
+        if (err) {
+            return res.end('error request file');
+        }
+        var data = new Image({
+            text: req.file.originalname,
+            image: req.file.originalname
         });
+        data.save().then((result) => {
+            res.send(result);
+            console.log(result);
+            console.log(req.file);
+            res.end('upload file success');
+        });
+
+
+
+
     });
+});
+
+
+
+router.get('/img', function(req, res, next) {
+    Image.find({Image}).then((images) => {
+        res.render('img', {images: images});
+    });
+});
+
+router.get('/img/:id', (req, res) => {
+    var id = req.params.id
+    Image.findById(id).then((result) => {
+        res.render('pic', {text : result.text, image : result.image});
+    }).catch((e) =>  res.send(e) );
+});
+
+router.get('/dimg', (req, res) => {
+    Image.remove({}, function(err) {
+        res.redirect('/img');
+    });
+
+});
 
 
 
@@ -201,9 +170,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static('public'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: false }));
+app.use(fileUpload());
 // Route
 app.use('/', router);
 
@@ -216,6 +185,9 @@ function ensureAuthenticated(req, res, next) {
 
     res.redirect('/needlogin');
 }
+
+
+
 
 
 const PORT = process.env.PORT || 3000;
