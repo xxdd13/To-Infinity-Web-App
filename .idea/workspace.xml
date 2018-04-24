@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f169b96-d42e-4ea5-848d-45a68d84f5a8" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/views/img.ejs" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/views/pic.ejs" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change beforePath="$PROJECT_DIR$/configuration/config.js" afterPath="$PROJECT_DIR$/configuration/config.js" />
-      <change beforePath="$PROJECT_DIR$/controllers/controllers.js" afterPath="$PROJECT_DIR$/controllers/controllers.js" />
       <change beforePath="$PROJECT_DIR$/models/Image.js" afterPath="$PROJECT_DIR$/models/Image.js" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change beforePath="$PROJECT_DIR$/routes/routes.js" afterPath="$PROJECT_DIR$/routes/routes.js" />
-      <change beforePath="$PROJECT_DIR$/views/createEvent.ejs" afterPath="$PROJECT_DIR$/views/createEvent.ejs" />
+      <change beforePath="$PROJECT_DIR$/views/img.ejs" afterPath="$PROJECT_DIR$/views/img.ejs" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,41 +18,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="117" column="30" lean-forward="true" selection-start-line="117" selection-start-column="30" selection-end-line="117" selection-end-column="30" />
+            <state relative-caret-position="150">
+              <caret line="120" column="33" lean-forward="true" selection-start-line="120" selection-start-column="33" selection-end-line="120" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/controllers.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="118" column="35" lean-forward="true" selection-start-line="118" selection-start-column="4" selection-end-line="118" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="authentication.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/authentication.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="23" column="18" lean-forward="false" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="img.ejs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="img.ejs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/img.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="17" column="21" lean-forward="false" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+            <state relative-caret-position="161">
+              <caret line="14" column="20" lean-forward="true" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -120,7 +92,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>before</find>
       <find>rev</find>
       <find>parti</find>
       <find>bg</find>
@@ -150,6 +121,7 @@
       <find>remove</find>
       <find>/d</find>
       <find>drop</find>
+      <find>res.send</find>
     </findStrings>
     <replaceStrings>
       <replace>#C490D1</replace>
@@ -208,9 +180,9 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/views/createEvent.ejs" />
         <option value="$PROJECT_DIR$/views/pic.ejs" />
-        <option value="$PROJECT_DIR$/views/img.ejs" />
         <option value="$PROJECT_DIR$/models/Image.js" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/views/img.ejs" />
       </list>
     </option>
   </component>
@@ -349,7 +321,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105282000" />
+    <option name="totallyTimeSpent" value="105942000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="705" extended-state="0" />
@@ -608,14 +580,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/authentication.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="23" column="18" lean-forward="false" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
@@ -639,10 +603,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/img.ejs">
+    <entry file="file://$PROJECT_DIR$/authentication.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="17" column="21" lean-forward="false" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+        <state relative-caret-position="101">
+          <caret line="23" column="18" lean-forward="false" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -655,6 +619,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="120" column="33" lean-forward="true" selection-start-line="120" selection-start-column="33" selection-end-line="120" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/Image.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -663,10 +635,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/views/img.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="117" column="30" lean-forward="true" selection-start-line="117" selection-start-column="30" selection-end-line="117" selection-end-column="30" />
+        <state relative-caret-position="161">
+          <caret line="14" column="20" lean-forward="true" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
           <folding />
         </state>
       </provider>

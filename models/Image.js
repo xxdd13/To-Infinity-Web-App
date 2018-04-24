@@ -7,8 +7,8 @@ const Image = new Schema({
         required: true
     },
     image: {
-        type: String,
-    },
+        type: Buffer,
+    }
 });
 
 module.exports = mongoose.model('Image', Image)

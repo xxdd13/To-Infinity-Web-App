@@ -99,41 +99,35 @@ app.get('/auth/facebook/callback',
 var multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "uploads/");
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname);
+
+
+app.post('/upload', upload.single('img'), function (req, res, next) {
+    // req.file is the `img` file
+    // req.body will hold the text fields, if there were any
+    if(!req.file){
+        res.send("no file");
+        console.log("no file")
+    }
+    else{
+        console.log(req.file);
+        var image = new Image({
+            text: req.file.originalname,
+            image: fs.readFileSync(req.file.path)
+        });
+        image.save(function (err, img) {
+
+
+            image.save().then((result) => {
+                res.send(result);
+            });
+            console.log(req.file);
+            res.send('upload file success');
+            console.log('success');
+        });
+
+
     }
 });
-
-var upload = multer({storage: storage}).single('img');
-
-app.post('/upload', (req, res) => {
-    upload(req, res, (err) => {
-        if (err) {
-            return res.end('error request file');
-        }
-        var data = new Image({
-            text: req.file.originalname,
-            image: req.file.originalname
-        });
-        data.save().then((result) => {
-            res.send(result);
-            console.log(result);
-            console.log(req.file);
-            res.end('upload file success');
-        });
-
-
-
-
-    });
-});
-
-
-
 router.get('/img', function(req, res, next) {
     Image.find({Image}).then((images) => {
         res.render('img', {images: images});
@@ -143,15 +137,17 @@ router.get('/img', function(req, res, next) {
 router.get('/img/:id', (req, res) => {
     var id = req.params.id
     Image.findById(id).then((result) => {
-        res.render('pic', {text : result.text, image : result.image});
+        //res.render('pic', {text : result.text, image : result.image});
+        res.send(result.image);
     }).catch((e) =>  res.send(e) );
 });
 
-router.get('/dimg', (req, res) => {
-    Image.remove({}, function(err) {
-        res.redirect('/img');
+router.delete('/img/:id', (req, res) => {
+    Image.remove({_id: req.params.id}).then(() => {
+        res.send({message: 'delete success'});
+    }).catch((e) => {
+        res.send(e);
     });
-
 });
 
 
