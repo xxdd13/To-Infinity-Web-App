@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
     <% include head %>
+    <link rel="stylesheet" href="/stylesheets/createEvent.css"/>
     <title>To infinity</title>
 
 </head>
@@ -13,24 +14,82 @@
     <% include nav %>
 </header>
 
-<main class="container">
+<div class="container">
+    <div class="card"></div>
+    <div class="card">
+        <h1 class="title">Create an Amazing Event!</h1>
+        <form ref='uploadForm'
+              id='uploadForm'
+              action='/upload'
+              method='post'
+              encType="multipart/form-data">
 
-    <form ref='uploadForm'
-           id='uploadForm'
-           action='/upload'
-           method='post'
-           encType="multipart/form-data">
-        <input type="file" name="img" />
-        <input type='submit' value='Upload!' />
-    </form>
+        <div class="input-container">
+                <input type="text" id="title" name="title" required="required"/>
+                <label for="#{label}">Title</label>
+                <div class="bar"></div>
+            </div>
+            <div class="input-container">
+                <input type="text" id="description" name="description" required="required"/>
+                <label for="#{label}">Description</label>
+                <div class="bar"></div>
+            </div>
+            <div class="input-container">
+                <input type="text" id="location" name="location" required="required"/>
+                <label for="#{label}">Location</label>
+                <div class="bar"></div>
+            </div>
+            <div class="input-container">
+                <input type="text" id="prefLang" name="prefLang" required="required"/>
+                <label for="#{label}">Pref Language</label>
+                <div class="bar"></div>
+            </div>
+            <div style="margin-left:270px;">
+                <div class="input-file-container">
+                    <input class="input-file" id="my-file" type="file">
+                    <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label>
+                </div>
+                <p class="file-return"></p>
+
+                <div class="input-file-container">
+                    <div class="button-container">
+                        <button type="submit" form="uploadForm" value="Submit"><span>Create</span></button>
+                    </div>
+                </div>
+            </div>
 
 
+        </form>
+    </div>
 
-</main>
+</div>
+
+
 
 <footer>
     <% include footer %>
 </footer>
+
+<script>
+    document.querySelector("html").classList.add('js');
+
+    var fileInput  = document.querySelector( ".input-file" ),
+        button     = document.querySelector( ".input-file-trigger" ),
+        the_return = document.querySelector(".file-return");
+
+    button.addEventListener( "keydown", function( event ) {
+        if ( event.keyCode == 13 || event.keyCode == 32 ) {
+            fileInput.focus();
+        }
+    });
+    button.addEventListener( "click", function( event ) {
+        fileInput.focus();
+        return false;
+    });
+    fileInput.addEventListener( "change", function( event ) {
+        the_return.innerHTML = this.value;
+    });
+</script>
 
 </body>
 </html>
