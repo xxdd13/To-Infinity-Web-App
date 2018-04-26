@@ -118,6 +118,7 @@ h1 {
 .cardX .header {
     color: #fff;
     padding: 1em;
+    background-color:rgba(0,0,0,0.1);
 }
 .cardX .header::before, .cardX .header::after {
     content: '';
@@ -177,5 +178,8 @@ h1 {
     -webkit-transform: translate(5px, -50%);
     transform: translate(5px, -50%);
     opacity: 1;
+}
+.createdDate{
+    //text-shadow:0px 0px 10px rgba(0,0,0,0.7);
 }
 

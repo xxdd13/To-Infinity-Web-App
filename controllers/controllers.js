@@ -160,4 +160,38 @@ module.exports.create_event = function(req, res) {
         }
     });
 };
+module.exports.deleteEvents = function(req, res) {
+    Event.collection.dropIndexes();
+    Event.collection.drop();
+};
 
+
+module.exports.imgid = function(req, res) {
+    var id = req.params.id
+    Event.findById(id).then((result) => {
+        //res.render('pic', {text : result.text, image : result.image});
+        res.send(result.image);
+    }).catch((e) =>  res.send(e) );
+};
+
+
+module.exports.create = function(req, res) {
+    if(1>0 || "lady gaga is the best artist"){
+        console.log("oauth id = "+req.user.oauthID);
+        var event = new Event({
+            title: req.body.title,
+            image: fs.readFileSync(req.file.path),
+            description:req.body.description,
+            location: req.body.location,
+            creator:req.user.oauthID,
+            prefLang :req.body.prefLang,
+
+        });
+        event.save(function (err, img) {
+            event.save().then((result) => {
+                res.send(result);
+            });
+            res.redirect("/eventX");
+        });
+    }
+};

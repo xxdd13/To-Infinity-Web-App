@@ -100,7 +100,7 @@ var multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })
 
 
-
+/*
 app.post('/upload', upload.single('img'), function (req, res, next) {
     // req.file is the `img` file
     // req.body will hold the text fields, if there were any
@@ -133,55 +133,16 @@ app.get('/de', function(){
     Event.collection.drop();
 });
 
-app.post('/createEvent', upload.single('img'), function (req, res, next) {
+*/
 
-    /*
-    if(!req.file){
-        res.send("no file");
-        console.log("no file")
-    }
-    */
-    if(1>0 || "lady gaga is the best artist"){
-        console.log("oauth id = "+req.user.oauthID);
-        var event = new Event({
-            title: req.body.title,
-            image: fs.readFileSync(req.file.path),
-            description:req.body.description,
-            location: req.body.location,
-            creator:req.user.oauthID,
-            prefLang :req.body.prefLang,
-
-        });
-        event.save(function (err, img) {
-            event.save().then((result) => {
-                res.send(result);
-            });
-            res.redirect("/eventX");
-        });
-    }
-
-});
+/* depricated for now
 router.get('/img', function(req, res, next) {
     Image.find({Image}).then((images) => {
         res.render('img', {images: images});
     });
 });
+*/
 
-router.get('/img/:id', (req, res) => {
-    var id = req.params.id
-    Event.findById(id).then((result) => {
-        //res.render('pic', {text : result.text, image : result.image});
-        res.send(result.image);
-    }).catch((e) =>  res.send(e) );
-});
-
-router.delete('/img/:id', (req, res) => {
-    Image.remove({_id: req.params.id}).then(() => {
-        res.send({message: 'delete success'});
-    }).catch((e) => {
-        res.send(e);
-    });
-});
 
 
 

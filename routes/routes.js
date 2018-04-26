@@ -26,6 +26,10 @@ router.get('/eventX',controllers.eventX);
 router.get('/create_event',controllers.create_event);
 router.get('/needLogin',controllers.needLogin);
 
+router.post('/createEvent',controllers.create);
+router.get('/de',controllers.deleteEvents);
+router.get('/img/:id',controllers.imgid);
+
 
 
 
