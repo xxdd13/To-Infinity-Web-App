@@ -7,7 +7,7 @@ var UserSchema = new mongoose.Schema({
         unique: true,
         index:true
     },
-    created: Date,
+    created: { type: Date, default: Date.now },
     email: {
         type: String,
         unique: false,

@@ -8,7 +8,7 @@ const Event = new Schema({
     image: {
         type: Buffer,
     },
-    descripton:{
+    description:{
         type:String
     },
     location:{
@@ -25,7 +25,14 @@ const Event = new Schema({
     },
     prefLang:{
         type:String
-    }
+    },
+    likes:{
+        type:Number
+    },
+    going:{
+        type:Number
+    },
+
 });
 
 module.exports = mongoose.model('Event', Event)

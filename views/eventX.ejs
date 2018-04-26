@@ -15,7 +15,44 @@
     <% include nav %>
 </header>
 
+<% events.forEach((event) => { %>
 
+
+<div class="row">
+    <div class="cardX card">
+        <div class="wrapper" style="background:url('/img/<%= event.id %>');background-size:cover">
+            <div class="header">
+                <div class="date">
+                    <span class="day">13</span>
+                    <span class="month">Mar</span>
+                    <span class="year">2018</span>
+                </div>
+                <ul class="menu-content">
+                    <li>
+                        <a href="#" class="fa fa-bookmark-o"></a>
+                    </li>
+                    <li><a href="#" class="fa fa-heart-o"><span>130</span></a></li>
+                    <li><a href="#" class="fa fa-comment-o"><span>13</span></a></li>
+                </ul>
+            </div>
+            <div class="data">
+                <div class="content">
+                    <span class="author">Lorem Ipsum</span>
+                    <h1 class="title"><a href="#"><%= event.title %></a></h1>
+                    <p class="text"><%= event.description %></p>
+                    <a href="#" class="button">Find out more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<% }) %>
 
 
 

@@ -19,12 +19,12 @@ const passport = require('passport');
 //const FacebookStrategy = require('passport-facebook').Strategy;
 const User = require('./models/user');
 const Image = require('./models/Image');
+const Event = require('./models/Event');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const router = require('./routes/routes');
 const fbAuth = require('./authentication.js');
 const fileUpload = require('express-fileupload');
-
 
 
 
@@ -128,6 +128,35 @@ app.post('/upload', upload.single('img'), function (req, res, next) {
 
     }
 });
+
+
+app.post('/createEvent', upload.single('img'), function (req, res, next) {
+
+    /*
+    if(!req.file){
+        res.send("no file");
+        console.log("no file")
+    }
+    */
+    if(1>0 || "lady gaga is the best artist"){
+        console.log("oauth id = "+req.user.oauthID);
+        var event = new Event({
+            title: req.body.title,
+            image: fs.readFileSync(req.file.path),
+            description:req.body.description,
+            location: req.body.location,
+            creator:req.user.oauthID,
+            prefLang :req.body.prefLang
+        });
+        event.save(function (err, img) {
+            event.save().then((result) => {
+                res.send(result);
+            });
+            res.redirect("/eventX");
+        });
+    }
+
+});
 router.get('/img', function(req, res, next) {
     Image.find({Image}).then((images) => {
         res.render('img', {images: images});
@@ -136,7 +165,7 @@ router.get('/img', function(req, res, next) {
 
 router.get('/img/:id', (req, res) => {
     var id = req.params.id
-    Image.findById(id).then((result) => {
+    Event.findById(id).then((result) => {
         //res.render('pic', {text : result.text, image : result.image});
         res.send(result.image);
     }).catch((e) =>  res.send(e) );
@@ -166,8 +195,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static('public'));
-//app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(fileUpload());
 // Route
 app.use('/', router);

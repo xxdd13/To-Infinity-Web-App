@@ -1,5 +1,7 @@
 const faker = require('../models/faker');
 const User = require('../models/user');
+const Event = require('../models/Event');
+
 module.exports.index = function(req, res) {
     res.render('index',{user:((req.session.user)?(req.session.user): false),user: req.user});
     //res.render('index',null);
@@ -139,7 +141,12 @@ module.exports.eventX = function(req, res) {
         if(err) {
             console.log(err);
         } else {
-            res.render('eventX', { user: user});
+            Event.find({}, function(err, events) {
+                if (!err){
+                    res.render('eventX', { user: user, events,events});
+                } else {throw err;}
+            });
+
         }
     });
 };

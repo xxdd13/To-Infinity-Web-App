@@ -20,7 +20,7 @@
         <h1 class="title">Create an Amazing Event!</h1>
         <form ref='uploadForm'
               id='uploadForm'
-              action='/upload'
+              action='/createEvent'
               method='post'
               encType="multipart/form-data">
 
@@ -46,7 +46,7 @@
             </div>
             <div style="margin-left:270px;">
                 <div class="input-file-container">
-                    <input class="input-file" id="my-file" type="file">
+                    <input class="input-file" id="img" type="file" name="img">
                     <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label>
                 </div>
                 <p class="file-return"></p>
