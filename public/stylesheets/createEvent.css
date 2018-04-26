@@ -330,3 +330,6 @@ h2 + P {
     text-decoration: none;
     color: #1ABC9C;
 }
+.file-return{
+    max-width:240px;
+}

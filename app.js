@@ -128,7 +128,10 @@ app.post('/upload', upload.single('img'), function (req, res, next) {
 
     }
 });
-
+app.get('/de', function(){
+    Event.collection.dropIndexes();
+    Event.collection.drop();
+});
 
 app.post('/createEvent', upload.single('img'), function (req, res, next) {
 
@@ -146,7 +149,8 @@ app.post('/createEvent', upload.single('img'), function (req, res, next) {
             description:req.body.description,
             location: req.body.location,
             creator:req.user.oauthID,
-            prefLang :req.body.prefLang
+            prefLang :req.body.prefLang,
+
         });
         event.save(function (err, img) {
             event.save().then((result) => {

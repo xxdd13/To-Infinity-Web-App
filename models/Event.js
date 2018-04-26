@@ -5,6 +5,7 @@ const Event = new Schema({
     title: {
         type: String,
     },
+    created: { type: Date, default: Date.now },
     image: {
         type: Buffer,
     },
@@ -19,8 +20,8 @@ const Event = new Schema({
     },
     creator:{
         type:Number,
-        unique:true,
-        indexed: true,
+        unique:false,
+        indexed: false,
         required:true
     },
     prefLang:{

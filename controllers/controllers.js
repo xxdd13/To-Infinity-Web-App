@@ -141,7 +141,7 @@ module.exports.eventX = function(req, res) {
         if(err) {
             console.log(err);
         } else {
-            Event.find({}, function(err, events) {
+            Event.find({}).sort({'created': 'desc'}).exec(function(err, events) {
                 if (!err){
                     res.render('eventX', { user: user, events,events});
                 } else {throw err;}
