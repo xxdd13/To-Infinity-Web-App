@@ -1,4 +1,4 @@
-<!-- views/users.ejs -->
+<!--  all events -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +19,9 @@
 
 
 <div class="row">
+    <form>
+        <input type="hidden" name="eventID" value="<%=event._id%>"/>
+    </form>
     <div class="cardX card">
         <div class="wrapper" style="background:url('/img/<%= event.id %>');background-size:cover">
             <div class="header">

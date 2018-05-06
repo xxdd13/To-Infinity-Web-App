@@ -1,6 +1,9 @@
 const faker = require('../models/faker');
 const User = require('../models/user');
 const Event = require('../models/Event');
+const Join = require('../models/Join');
+const mongoose = require('mongoose');
+const fs = require('fs');
 
 module.exports.index = function(req, res) {
     res.render('index',{user:((req.session.user)?(req.session.user): false),user: req.user});
@@ -87,6 +90,7 @@ module.exports.loginReq = function(req, res,next) {
 
 module.exports.profile = function(req, res) {
 
+
     User.findById(req.session.passport.user, function(err, user) {
 
         // Error
@@ -94,7 +98,18 @@ module.exports.profile = function(req, res) {
             console.log(err);
 
         } else {
-            res.render('profile', { user: user});
+            Join.find({oauthID:req.user.oauthID}, function(err, joins) {
+
+                // Error
+                if(err) {
+                    console.log(err);
+
+                } else {
+
+                    res.render('profile', { user: user,joins:joins});
+                }
+            });
+
         }
     });
 
@@ -151,7 +166,39 @@ module.exports.eventX = function(req, res) {
     });
 };
 
-module.exports.create_event = function(req, res) {
+module.exports.event = function(req, res) {
+    var eventID = req.params.eventID
+    if(!req.params.eventID){
+        return res.send("no ID provided");
+    }
+    User.findById(req.session.passport.user, function(err, user) {
+        if(err) {
+            console.log(err);
+        } else {
+
+            Event.findById(eventID, function(err, event) {
+                if(err) {
+                    console.log(err);
+                } else {
+                    if (event!=null){
+                        res.render('event', { user: user, event,event});
+                    }else{
+                        res.send("Invalid Event ID");
+                    }
+
+
+                }
+            });
+        }
+    });
+
+
+};
+
+
+module.exports.create_event = function(req, res,next) {
+
+
     User.findById(req.session.passport.user, function(err, user) {
         if(err) {
             console.log(err);
@@ -163,6 +210,8 @@ module.exports.create_event = function(req, res) {
 module.exports.deleteEvents = function(req, res) {
     Event.collection.dropIndexes();
     Event.collection.drop();
+    Join.collection.dropIndexes();
+    Join.collection.drop();
 };
 
 
@@ -174,10 +223,9 @@ module.exports.imgid = function(req, res) {
     }).catch((e) =>  res.send(e) );
 };
 
-
 module.exports.create = function(req, res) {
     if(1>0 || "lady gaga is the best artist"){
-        console.log("oauth id = "+req.user.oauthID);
+
         var event = new Event({
             title: req.body.title,
             image: fs.readFileSync(req.file.path),
@@ -187,11 +235,43 @@ module.exports.create = function(req, res) {
             prefLang :req.body.prefLang,
 
         });
-        event.save(function (err, img) {
+
+        event.save(function (err, eve) {
             event.save().then((result) => {
-                res.send(result);
+                var join = new Join({
+                    oauthID: req.user.oauthID,
+                    eventID: eve._id
+                });
+                join.save(function (err, eve) {
+                    res.redirect("/eventX");
+                });
             });
-            res.redirect("/eventX");
+
         });
     }
 };
+
+module.exports.joinList = function(req, res) {
+    Join.find({}, function(err, join) {
+
+        // Error
+        if(err) {
+            console.log(err);
+
+        } else {
+            res.send(join);
+        }
+    });
+
+};
+
+module.exports.join = function(req, res) {
+    var join = new Join({
+        oauthID: req.user.oauthID,
+        eventID: req.body.eventID
+    });
+    join.save(function (err, eve) {
+        res.redirect("/eventX");
+    });
+};
+

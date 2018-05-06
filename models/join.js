@@ -7,11 +7,11 @@ var JoinSchema = new mongoose.Schema({
         index:true
     },
     created: { type: Date, default: Date.now },
-    eventID:{type:Number}
+    eventID:{type:String}
 });
 
 
 
-var User = mongoose.model('Join', JoinSchema);
+var Join = mongoose.model('Join', JoinSchema);
 module.exports = Join;
 

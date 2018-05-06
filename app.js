@@ -8,7 +8,7 @@ const config = require('./configuration/config');
 const app = express();
 const createError = require('http-errors');
 const fs = require('fs');
-https = require('https');
+const https = require('https');
 const ejs  = require('ejs');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -26,7 +26,7 @@ const router = require('./routes/routes');
 const fbAuth = require('./authentication.js');
 const fileUpload = require('express-fileupload');
 
-
+const multer  = require('multer');
 
 // Connects MongoDB
 const mongoURI = "mongodb+srv://info30005thursday:Info30005@cluster0-rcw4z.mongodb.net/auth";
@@ -65,14 +65,12 @@ app.use(passport.session());
 
 // Process storing the User Info once you get the Callback URL from FB
 passport.serializeUser(function(user, done) {
-    console.log('serializeUser: ' + user._id);
     done(null, user._id);
 });
 
 
 passport.deserializeUser(function(id, done) {
     User.findById(id, function(err, user){
-        console.log(user);
         if(!err) done(null, user);
         else done(err, null);
     });
@@ -96,11 +94,12 @@ app.get('/auth/facebook/callback',
 
 
 
-var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
 
+app.use(multer({dest:'./uploads/'}).single('img'));
 
 /*
+
+
 app.post('/upload', upload.single('img'), function (req, res, next) {
     // req.file is the `img` file
     // req.body will hold the text fields, if there were any

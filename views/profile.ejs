@@ -8,6 +8,7 @@
     <% include head %>
     <link rel="stylesheet" href="/stylesheets/profile.css"/>
 
+
 </head>
 <body>
 
@@ -50,15 +51,44 @@
                         <!-- Content-->
                         <div class="card-content">
                             <div class="card-content__username"><%= user.name %></div>
-                            <div class="card-content__bio">Bio</div>
+                            <div class="card-content__bio">
+
+
+
+
+                            </div>
+
                         </div>
+
+                        <div class="m-dropdown">
+                            <div class="e-button open">
+                                Past Events
+                                <div class="e-burger">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <ul class="e-list">
+                                <% joins.forEach((join) => { %>
+                                <li>
+                                    <a href="/event/<%=join.eventID%>">
+                                        Date:<%=join.created.toDateString()%></a>
+
+                                </li>
+                                <%})%>
+
+                            </ul>
+                        </div>
+
                         <!-- Footer-->
                         <div class="card-footer">
                             <div class="card-footer__pens"> <span>20</span>
                                 <div class="label">Age</div>
                                </div>
-                            <div class="card-footer__followers"> <span>3</span>
-                                <div class="label">Events</div>
+                            <div class="card-footer__followers"> <span><%=joins.length%></span>
+                                <div class="label">Joined Events</div>
                             </div>
                             <div class="card-footer__following"> <span>Melbourne</span>
                                 <div class="label">Location</div><br><br><br>
@@ -73,7 +103,7 @@
         </div>
 
 
-
+<script src="/javascripts/profile.js"></script>
 <footer>
     <% include footer %>
 </footer>
