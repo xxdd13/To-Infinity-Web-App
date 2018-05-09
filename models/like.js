@@ -10,10 +10,8 @@ var LikeSchema = new mongoose.Schema({
     eventID:{
         type:String
     },
-    created: { type: Date, default: Date.now },
+    created: { type: Date, default: Date.now }
 });
-
-
 
 var Like = mongoose.model('Like', LikeSchema);
 module.exports = Like;
