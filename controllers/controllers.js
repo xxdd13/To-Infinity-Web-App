@@ -1,9 +1,11 @@
+const mongoose = require('mongoose');
 const faker = require('../models/faker');
 const User = require('../models/user');
 const Event = require('../models/Event');
+
 const Join = require('../models/Join');
 const Like = require('../models/Like');
-const mongoose = require('mongoose');
+
 const fs = require('fs');
 
 module.exports.index = function(req, res) {
