@@ -28,10 +28,10 @@ const Event = new Schema({
         type:String
     },
     likes:{
-        type:Number
+        type:Number,default: 0
     },
     going:{
-        type:Number
+        type:Number,default: 1
     },
 
 });

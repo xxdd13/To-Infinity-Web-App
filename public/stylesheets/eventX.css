@@ -108,7 +108,7 @@ h1 {
 
 
 .cardX .wrapper {
-    background: url(http://bendcitychurch.org/wp-content/uploads/2016/10/Running.jpg) center/cover no-repeat;
+    background: black;
 }
 .cardX .wrapper:hover .menu-content span {
     -webkit-transform: translate(-50%, -10px);

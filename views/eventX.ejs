@@ -7,7 +7,20 @@
     <% include head %>
     <link rel="stylesheet" href="/stylesheets/eventX.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
-
+    <script>
+        function ajax(eventID){
+            var formdata = eventID;
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function(){
+                if(xmlhttp.readyState==4 && xmlhttp.status==200){
+                    document.getElementById("likeNum"+eventID).innerHTML=xmlhttp.responseText;
+                };
+            };
+            xmlhttp.open("POST","",true);
+            xmlhttp.send(formdata);
+            return false;
+        }
+    </script>
 </head>
 <body>
 
@@ -21,7 +34,7 @@
 <div class="row">
 
     <div class="cardX card">
-        <div class="wrapper" style="background:url('/img/<%= event.id %>');background-size:cover">
+        <div class="wrapper"style="background:url('/img/<%= event.id %>');background-size:cover">
             <div class="header">
                 <div class="date">
 
@@ -29,11 +42,29 @@
                 </div>
                 <ul class="menu-content">
 
-                    <li><a href="#" class="fa fa-heart-o" style="font-size:16px;"><span><%=event.like%></span></a></li>
-                    <li><a href="#" class="fa fa-user" style="font-size:16px;"><span><%=event.going%></span></a></li>
+                    <li><% if (myLikes.indexOf(String(event._id))!=-1) { %>
+                            <a class="fa fa-heart" style="font-size:16px;color:#ff4d68">
+                        <% } else { %>
+                            <a  onClick="return ajax('<%=event._id%>');" class="fa fa-heart-o" style="font-size:16px;">
+                        <% }; %>
+                            <% if(event.likes<1||event.likes==null){ %>
+                            <span id="likeNum<%=event._id%>">0</span>
+                            <% } else { %>
+                                <span id="likeNum<%=event._id%>"><%=event.likes%> </span>
+                            <% }; %>
+
+                        </a>
+                    </li>
+                    </form>
+                    <!--
+                    <li><a class="fa fa-user" style="font-size:16px;"><span><%=event.going%></span></a></li>
+                    -->
                     <% if (myEvents.indexOf(String(event._id))!=-1) { %>
                         <li style="padding:0px;margin:0px;  ">
-                            <button disabled>Joined<p class="fa fa-check"></button>
+                            <form id="quit<%=event._id%>" action="/quitEvent" method="POST">
+                                <input type="hidden" name="eventID" value="<%=event._id%>"/>
+                                <button onClick=document.getElementById('quit<%=event._id%>').submit()>Joined<p class="fa fa-check"></button>
+                            </form>
                         </li>
 
                     <% } else { %>
@@ -50,7 +81,6 @@
             </div>
             <div class="data">
                 <div class="content">
-                    <span class="author">Lorem Ipsum</span>
                     <h1 class="title"><a href="#"><%= event.title %></a></h1>
                     <p class="text"><%= event.description %></p>
                     <a href="/event/<%=event._id%>" class="button">Find out more</a>
@@ -133,6 +163,7 @@
 
 
         </div>
+
 
 
 

@@ -28,14 +28,18 @@ router.get('/create_event',ensureAuthenticated,controllers.create_event);
 router.get('/needLogin',controllers.needLogin);
 
 router.post('/createEvent',controllers.create);
-router.get('/de',controllers.deleteEvents);
 router.get('/img/:id',controllers.imgid);
 
 router.get('/join',controllers.joinList);
 router.post('/join',controllers.join);
+router.post('/quitEvent',controllers.quitEvent);
+
 
 router.post('/updatebio',controllers.updatebio);
+router.post('/eventX',controllers.like);
 
+//deletes
+router.get('/de',controllers.deleteEvents);
+router.get('/dl',controllers.deleteLikes);
 
-//router.get('/posts/:id', controllers.fetchPost);
 module.exports = router;

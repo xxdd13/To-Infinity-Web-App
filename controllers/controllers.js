@@ -1,6 +1,7 @@
 const faker = require('../models/faker');
 const User = require('../models/user');
 const Event = require('../models/Event');
+const Like = require('../models/Like');
 const Join = require('../models/Join');
 const mongoose = require('mongoose');
 const fs = require('fs');
@@ -76,7 +77,7 @@ module.exports.loginReq = function(req, res,next) {
             } else {
                 req.session.userId = user._id;
                 req.session.user = user;
-                console.log(user);
+                //console.log(user);
                 res.redirect('/');
             }
         });
@@ -153,24 +154,25 @@ module.exports.deleteAll = function(req, res) {
 
 module.exports.eventX = function(req, res) {
     var myEvents = [];
+    var myLikes=[];
+    Event.find({}).sort({'created': 'desc'}).exec(function(err, events) {
+        if (!err){
+            Join.find({oauthID:req.user.oauthID}, function(err, joinedEvents) {
+                for (var i in joinedEvents) {
+                    myEvents.push(joinedEvents[i].eventID);
+                }
+                Like.find({oauthID:req.user.oauthID}, function(err, liked) {
+                    for (var j in liked) {
+                        myLikes.push(liked[j].eventID);
 
-    User.findById(req.session.passport.user, function(err, user) {
-        if(err) {
-            console.log(err);
-        } else {
-            Event.find({}).sort({'created': 'desc'}).exec(function(err, events) {
-                if (!err){
-                    Join.find({oauthID:req.user.oauthID}, function(err, joinedEvents) {
-                        for (var i in joinedEvents) {
-                            myEvents.push(joinedEvents[i].eventID);
-                        }
-                        res.render('eventX', { user: user, events:events,myEvents:myEvents});
-                    });
+                    }
 
-                } else {throw err;}
+                    res.render('eventX', { user: req.user, events:events,myEvents:myEvents,myLikes:myLikes});
+                });
+
             });
 
-        }
+        } else {throw err;}
     });
 };
 
@@ -244,6 +246,10 @@ module.exports.deleteEvents = function(req, res) {
     Join.collection.dropIndexes();
     Join.collection.drop();
 };
+module.exports.deleteLikes = function(req, res) {
+    Like.collection.dropIndexes();
+    Like.collection.drop();
+};
 
 
 module.exports.imgid = function(req, res) {
@@ -313,8 +319,68 @@ module.exports.updatebio = function(req, res) {
 
 
     User.update({_id: req.session.passport.user}, { bio: text}, { multi: true }, function (err, result) {
-        console.log("11111111111"+text)
         res.redirect("/profile")
     })
 
+};
+
+module.exports.quitEvent = function(req, res) {
+    var eventID = req.body.eventID
+
+    Join.findOneAndRemove({eventID:eventID,oauthID:req.user.oauthID}, function(err,data)
+    {
+        if(!err){
+            console.log("Deleted");
+            res.redirect("/eventX");
+        }
+    });
+
+
+};
+
+
+
+module.exports.like = function(req, res) {
+    req.on('data', function(chunk) {
+
+        var id = chunk.toString();//eventID
+        var likeID=String(req.user.oauthID)+id;
+        Like.findOne({oauthEventID: likeID}, function (err, like) {
+
+            Event.findOne({_id: mongoose.Types.ObjectId(id)}, function (err, event) {
+                var num = event.likes;
+
+
+                if(like == null || !like){//never liked this event
+                    if(num==null || !num){num=1}
+                    else{num+=1;};
+                    var newLike = new Like({
+                        oauthEventID: likeID,
+                        oauthID:req.user.oauthID,
+                        eventID:id
+                    });
+                    newLike.save(function (err, save) {
+                        Event.update({_id: mongoose.Types.ObjectId(id)}, { likes: num}, { multi: false }, function (err, result) {
+                            console.log("number of likes " +num)
+                            res.setHeader('Content-Type', 'text/html');
+                            res.writeHead(200);
+                            res.end(String(num));
+                        });
+                    });
+
+                }
+                else{
+                    console.log("user already liked");
+                    if(num==null || !num){num=0}
+                    res.setHeader('Content-Type', 'text/html');
+                    res.writeHead(200);
+                    res.end(String(num));
+                }
+
+
+            });
+        });
+
+
+    });
 };
