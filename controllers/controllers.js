@@ -3,8 +3,8 @@ const faker = require('../models/faker');
 const User = require('../models/user');
 const Event = require('../models/Event');
 
-const Join = require('../models/Join');
-const Like = require('../models/Like');
+var Join = require('../models/join');
+const Like = require('../models/like');
 
 const fs = require('fs');
 
