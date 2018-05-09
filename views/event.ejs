@@ -5,7 +5,7 @@
 <head>
     <link rel="stylesheet" href="/stylesheets/style.css">
     <% include head %>
-    <link rel="stylesheet" href="/stylesheets/eventX.css"/>
+    <link rel="stylesheet" href="/stylesheets/event.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
 
 </head>
@@ -37,21 +37,35 @@
                     <li><a href="#" class="fa fa-comment-o"><span>13</span></a></li>
                 </ul>
             </div>
-            <div class="data">
-                <div class="content">
-                    <span class="author">Lorem Ipsum</span>
-                    <h1 class="title"><a href="#"><%= event.title %></a></h1>
-                    <p class="text"><%= event.description %></p>
-                    <a href="#" class="button">Find out more</a>
-                </div>
-            </div>
+
+
+
+        </div>
+        <div class="content-2">
+            <li class="user-list__item2">
+                <p>Host</p>
+                <img class="user-list__avatar-creator" style="background-image: url(<%=creator.avatar%>);">
+                <div class="user-list__name"><%=creator.name%></div>
+            </li>
+            <h1 class="title"><%= event.title %></h1>
+            <p class="text"><%= event.description %></p>
+            <p class="text">Location:<%=event.location%></p>
         </div>
     </div>
+
+
+
 </div>
-
-
-
-
+<div class="row">
+    <ul class="user-list">
+        <% userInEvent.forEach((uie) => { %>
+        <li class="user-list__item">
+            <img class="user-list__avatar" style="background-image: url(<%=uie.avatar%>);">
+            <div class="user-list__name"><%=uie.name%></div>
+        </li>
+        <% }) %>
+    </ul>
+</div>
 
 
 

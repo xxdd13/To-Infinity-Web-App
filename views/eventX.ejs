@@ -19,9 +19,7 @@
 
 
 <div class="row">
-    <form>
-        <input type="hidden" name="eventID" value="<%=event._id%>"/>
-    </form>
+
     <div class="cardX card">
         <div class="wrapper" style="background:url('/img/<%= event.id %>');background-size:cover">
             <div class="header">
@@ -33,16 +31,20 @@
 
                     <li><a href="#" class="fa fa-heart-o" style="font-size:16px;"><span><%=event.like%></span></a></li>
                     <li><a href="#" class="fa fa-user" style="font-size:16px;"><span><%=event.going%></span></a></li>
-                    <% if (myEvents.indexOf(event._id) != -1) { %>
-                        <li style="padding:0px;margin:0px;  ">
-                            <button>Join</button>
-                        </li>
-
-                    <% } else { %>
-
+                    <% if (myEvents.indexOf(String(event._id))!=-1) { %>
                         <li style="padding:0px;margin:0px;  ">
                             <button disabled>Joined<p class="fa fa-check"></button>
                         </li>
+
+                    <% } else { %>
+                        <li style="padding:0px;margin:0px;  ">
+                            <form id="<%=event._id%>" action="/join" method="POST">
+                                <input type="hidden" name="eventID" value="<%=event._id%>"/>
+                                <button onClick=document.getElementById('<%=event._id%>').submit()>Join</button>
+                            </form>
+
+                        </li>
+
                     <%}%>
                 </ul>
             </div>
@@ -51,7 +53,7 @@
                     <span class="author">Lorem Ipsum</span>
                     <h1 class="title"><a href="#"><%= event.title %></a></h1>
                     <p class="text"><%= event.description %></p>
-                    <a href="#" class="button">Find out more</a>
+                    <a href="/event/<%=event._id%>" class="button">Find out more</a>
                 </div>
             </div>
         </div>

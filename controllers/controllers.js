@@ -160,9 +160,9 @@ module.exports.eventX = function(req, res) {
         } else {
             Event.find({}).sort({'created': 'desc'}).exec(function(err, events) {
                 if (!err){
-                    Join.find({oauthID:req.session.passport.user}, function(err, joinedEvents) {
+                    Join.find({oauthID:req.user.oauthID}, function(err, joinedEvents) {
                         for (var i in joinedEvents) {
-                            myEvents.add(event[i]);
+                            myEvents.push(joinedEvents[i].eventID);
                         }
                         res.render('eventX', { user: user, events:events,myEvents:myEvents});
                     });
@@ -189,7 +189,30 @@ module.exports.event = function(req, res) {
                     console.log(err);
                 } else {
                     if (event!=null){
-                        res.render('event', { user: user, event,event});
+
+                        Join.find({eventID:eventID},function(err, joins) {
+                            if(err) {
+                                console.log(err);
+                            } else {
+
+                                var userInEvent = [];
+                                joins.forEach(function(j) {
+                                    userInEvent.push(j.oauthID);
+                                });
+                                User.find({
+                                    'oauthID': { $in: userInEvent}
+                                }, function(err, users){
+
+                                    User.findOne({oauthID: event.creator}, function(err, creator){
+                                        console.log(creator.name)
+                                        console.log(creator)
+                                        res.render('event', { user: user, event,event,userInEvent:users,creator:creator});
+                                    });
+
+                                });
+                            }
+                        });
+
                     }else{
                         res.send("Invalid Event ID");
                     }
