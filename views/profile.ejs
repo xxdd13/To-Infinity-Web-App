@@ -46,12 +46,18 @@
 
                             <div class="card-header__avatar" style="background:#efefef"></div>
 
-                                <a class="card-header__follow" href="#">Follow</a>
+
                         </div>
                         <!-- Content-->
                         <div class="card-content">
                             <div class="card-content__username"><%= user.name %></div>
                             <div class="card-content__bio">
+                                <form action="/updateBio" method="POST">
+                                    <input id="bioForm" type="text-area" name="bio" maxlength="150" placeholder="<%=user.bio%>"/>
+                                    <div class="biob">
+                                        <button id="button"></button>
+                                    </div>
+                                </form>
 
 
 

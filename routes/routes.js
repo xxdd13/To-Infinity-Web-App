@@ -22,8 +22,8 @@ router.get('/logout',controllers.logout);
 
 router.get('/d',controllers.deleteAll);
 
-router.get('/eventX',controllers.eventX);
-router.get('/event/:eventID',controllers.event);
+router.get('/eventX',ensureAuthenticated,controllers.eventX);
+router.get('/event/:eventID',ensureAuthenticated,controllers.event);
 router.get('/create_event',ensureAuthenticated,controllers.create_event);
 router.get('/needLogin',controllers.needLogin);
 
@@ -33,6 +33,8 @@ router.get('/img/:id',controllers.imgid);
 
 router.get('/join',controllers.joinList);
 router.post('/join',controllers.join);
+
+router.post('/updatebio',controllers.updatebio);
 
 
 //router.get('/posts/:id', controllers.fetchPost);

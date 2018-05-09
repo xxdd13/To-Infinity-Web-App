@@ -7,7 +7,7 @@
     <title>To infinity</title>
 
     <link rel="stylesheet" href="stylesheets/index.css">
-    <link rel="stylesheet" href="stylesheets/cardstyle.css">
+    <link rel="stylesheet" href="stylesheets/needlogin.css">
 
 </head>
 <body class="index-body">
@@ -15,14 +15,14 @@
 <header>
     <% include nav %>
 </header>
-    <main class = "container">
-
-        <h1 style="text-align:center;">You have to login first</h1>
-        <a href="/auth/facebook"><img src="images/fb-login.jpg" width="600" height="120"></a>
 
 
 
-    </main>
+        <div class="terminal" data-content="~/xin/webserver/terminal">
+            <h1 style="text-align:center;">You have to login first</h1>
+            <a href="/auth/facebook"><img src="images/fb-login.jpg" width="300" height="60"></a>
+        </div>
+
 
 <footer>
     <% include footer %>

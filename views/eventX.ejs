@@ -30,11 +30,20 @@
                     <span class="createdDate"><%= event.created%></span>
                 </div>
                 <ul class="menu-content">
-                    <li>
-                        <a href="#" class="fa fa-bookmark-o"></a>
-                    </li>
-                    <li><a href="#" class="fa fa-heart-o"><span>130</span></a></li>
-                    <li><a href="#" class="fa fa-comment-o"><span>13</span></a></li>
+
+                    <li><a href="#" class="fa fa-heart-o" style="font-size:16px;"><span><%=event.like%></span></a></li>
+                    <li><a href="#" class="fa fa-user" style="font-size:16px;"><span><%=event.going%></span></a></li>
+                    <% if (myEvents.indexOf(event._id) != -1) { %>
+                        <li style="padding:0px;margin:0px;  ">
+                            <button>Join</button>
+                        </li>
+
+                    <% } else { %>
+
+                        <li style="padding:0px;margin:0px;  ">
+                            <button disabled>Joined<p class="fa fa-check"></button>
+                        </li>
+                    <%}%>
                 </ul>
             </div>
             <div class="data">

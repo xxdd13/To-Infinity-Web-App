@@ -152,13 +152,21 @@ module.exports.deleteAll = function(req, res) {
 
 
 module.exports.eventX = function(req, res) {
+    var myEvents = [];
+
     User.findById(req.session.passport.user, function(err, user) {
         if(err) {
             console.log(err);
         } else {
             Event.find({}).sort({'created': 'desc'}).exec(function(err, events) {
                 if (!err){
-                    res.render('eventX', { user: user, events,events});
+                    Join.find({oauthID:req.session.passport.user}, function(err, joinedEvents) {
+                        for (var i in joinedEvents) {
+                            myEvents.add(event[i]);
+                        }
+                        res.render('eventX', { user: user, events:events,myEvents:myEvents});
+                    });
+
                 } else {throw err;}
             });
 
@@ -275,3 +283,15 @@ module.exports.join = function(req, res) {
     });
 };
 
+
+
+module.exports.updatebio = function(req, res) {
+    var text = req.body.bio
+
+
+    User.update({_id: req.session.passport.user}, { bio: text}, { multi: true }, function (err, result) {
+        console.log("11111111111"+text)
+        res.redirect("/profile")
+    })
+
+};
