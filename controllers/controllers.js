@@ -157,7 +157,7 @@ module.exports.deleteAll = function(req, res) {
 module.exports.eventX = function(req, res) {
     var myEvents = [];
     var myLikes=[];
-    Event.find({}).sort({'created': 'desc'}).exec(function(err, events) {
+    Event.find({active:true}).sort({'created': 'desc'}).exec(function(err, events) {
         if (!err){
             Join.find({oauthID:req.user.oauthID}, function(err, joinedEvents) {
                 for (var i in joinedEvents) {
@@ -244,11 +244,13 @@ module.exports.create_event = function(req, res,next) {
         }
     });
 };
-module.exports.deleteEvents = function(req, res) {
+module.exports.deleteAllEvents = function(req, res) {
     Event.collection.dropIndexes();
     Event.collection.drop();
     Join.collection.dropIndexes();
     Join.collection.drop();
+    Like.collection.dropIndexes();
+    Like.collection.drop();
 };
 module.exports.deleteLikes = function(req, res) {
     Like.collection.dropIndexes();
@@ -330,7 +332,6 @@ module.exports.updatebio = function(req, res) {
 
 module.exports.quitEvent = function(req, res) {
     var eventID = req.body.eventID
-
     Join.findOneAndRemove({eventID:eventID,oauthID:req.user.oauthID}, function(err,data)
     {
         if(!err){
@@ -338,8 +339,6 @@ module.exports.quitEvent = function(req, res) {
             res.redirect("/eventX");
         }
     });
-
-
 };
 
 
@@ -387,4 +386,15 @@ module.exports.like = function(req, res) {
 
 
     });
+};
+
+
+module.exports.deleteEvent = function(req, res) {
+    //events not truly deleted, but rather a deactive status
+    var eventID = req.body.eventID;
+    Event.update({_id: eventID}, { active: true}, { multi: false }, function (err, result) {
+        res.redirect("/eventX")
+    });
+
+
 };

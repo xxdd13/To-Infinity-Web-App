@@ -67,7 +67,7 @@ h1 {
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
 
 }
-.card .wrapper .data {
+.card .wrapper:hover .data {
     -webkit-transform: translateY(0);
     transform: translateY(0);
 }
@@ -112,7 +112,7 @@ h1 {
     background: url(http://bendcitychurch.org/wp-content/uploads/2016/10/Running.jpg) center/cover no-repeat;
 
 }
-.cardX .wrapper .menu-content span {
+.cardX .wrapper:hover .menu-content span {
     -webkit-transform: translate(-50%, -10px);
     transform: translate(-50%, -10px);
     opacity: 1;
@@ -286,4 +286,17 @@ button:hover{
     //margin-top:50px;
     color:black;
     padding:30px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .card .wrapper .data {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+    .cardX .wrapper .menu-content span {
+        -webkit-transform: translate(-50%, -10px);
+        transform: translate(-50%, -10px);
+        opacity: 1;
+    }
 }

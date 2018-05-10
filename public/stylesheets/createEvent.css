@@ -23,8 +23,8 @@
 /* Container */
 .container {
     position: relative;
-    max-width: 800px;
-    width: 100%;
+    max-width: 100%;
+    width: 800px;
     margin: 0 auto 100px;
 }
 .container.active .card:first-child {
@@ -311,6 +311,7 @@ h2 {
 }
 form {
     width: 800px;
+    max-width:100%;
     margin: 0 auto;
     text-align:center;
 }
@@ -331,5 +332,5 @@ h2 + P {
     color: #1ABC9C;
 }
 .file-return{
-    max-width:240px;
+    //max-width:240px;
 }

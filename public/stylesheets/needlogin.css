@@ -66,3 +66,6 @@ body {
     content: '~$ ';
 }
 
+.fblogin-img{
+    max-width:100%;
+}

@@ -33,6 +33,9 @@ const Event = new Schema({
     going:{
         type:Number,default: 1
     },
+    active:{
+        type:Boolean,default:true
+    },
 
 });
 

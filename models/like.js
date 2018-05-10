@@ -2,13 +2,16 @@ var mongoose = require('mongoose');
 /*many to many relationship of user likes events*/
 var LikeSchema = new mongoose.Schema({
     oauthEventID:{
-        type:String
+        type:String,
+        index:true
     },
     oauthID:{
-        type:String
+        type:String,
+        index:true
     },
     eventID:{
-        type:String
+        type:String,
+        index:true
     },
     created: { type: Date, default: Date.now }
 });

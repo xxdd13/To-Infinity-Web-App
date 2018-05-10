@@ -4,10 +4,10 @@ var JoinSchema = new mongoose.Schema({
     oauthID:{
         type:Number,
         unique: false,
-        index:false
+        index:true
     },
     created: { type: Date, default: Date.now },
-    eventID:{type:String}
+    eventID:{type:String, index:true}
 });
 
 

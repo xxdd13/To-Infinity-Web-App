@@ -65,14 +65,12 @@ h1 {
     overflow: hidden;
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
 }
-.card .wrapper .data {
+.card .wrapper:hover .data {
     -webkit-transform: translateY(0);
     transform: translateY(0);
 }
-.card .wrapper:active .data {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-}
+
+
 .card .data {
     position: absolute;
     bottom: 0;
@@ -114,12 +112,7 @@ h1 {
 .cardX .wrapper {
     background: black;
 }
-.cardX .wrapper .menu-content span {
-    -webkit-transform: translate(-50%, -10px);
-    transform: translate(-50%, -10px);
-    opacity: 1;
-}
-.cardX .wrapper:active .menu-content span {
+.cardX .wrapper:hover .menu-content span {
     -webkit-transform: translate(-50%, -10px);
     transform: translate(-50%, -10px);
     opacity: 1;
@@ -222,4 +215,16 @@ button:hover{
     -moz-transition: all .5s linear;
     -o-transition: all .5s linear;
     transition: all .5s linear;
+}
+
+@media only screen and (max-width: 600px) {
+    .card .wrapper .data {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+    .cardX .wrapper .menu-content span {
+        -webkit-transform: translate(-50%, -10px);
+        transform: translate(-50%, -10px);
+        opacity: 1;
+    }
 }

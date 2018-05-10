@@ -39,7 +39,7 @@ router.post('/updatebio',controllers.updatebio);
 router.post('/eventX',controllers.like);
 
 //deletes
-router.get('/de',controllers.deleteEvents);
+router.get('/de',controllers.deleteAllEvents);
 router.get('/dl',controllers.deleteLikes);
-
+router.post('/delete-event',controllers.deleteEvent);
 module.exports = router;
