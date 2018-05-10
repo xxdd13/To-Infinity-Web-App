@@ -94,9 +94,9 @@ h1 {
     font-weight: 900;
 }
 .card .text {
-    height: 70px;
+    height: 100px;
     margin: 0;
-    font-size:20px;
+    font-size:13px;
 }
 .card input[type='checkbox'] {
     display: none;
@@ -299,4 +299,7 @@ button:hover{
         transform: translate(-50%, -10px);
         opacity: 1;
     }
+}
+.maprow{
+    margin-top:0px;
 }

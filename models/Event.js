@@ -36,6 +36,12 @@ const Event = new Schema({
     active:{
         type:Boolean,default:true
     },
+    long:{
+        type:String,required:false
+    },
+    lat:{
+        type:String,required:false
+    }
 
 });
 

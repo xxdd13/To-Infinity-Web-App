@@ -3,6 +3,11 @@ const faker = require('../models/faker');
 const User = require('../models/user');
 const Event = require('../models/Event');
 
+   // apiKey: 'AIzaSyD1--POJ59u8OwyG0bkRsf21BHAgPU5dDw', // for Mapquest, OpenCage, Google Premier
+
+
+
+
 var Join = require('../models/join');
 const Like = require('../models/like');
 
@@ -274,6 +279,8 @@ module.exports.create = function(req, res) {
             image: fs.readFileSync(req.file.path),
             description:req.body.description,
             location: req.body.location,
+            long: req.body.eventlong,
+            lat:req.body.eventlat,
             creator:req.user.oauthID,
             prefLang :req.body.prefLang,
 
@@ -295,16 +302,9 @@ module.exports.create = function(req, res) {
 };
 
 module.exports.joinList = function(req, res) {
-    Join.find({}, function(err, join) {
 
-        // Error
-        if(err) {
-            console.log(err);
+    res.render('temp');
 
-        } else {
-            res.send(join);
-        }
-    });
 
 };
 

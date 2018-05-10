@@ -25,10 +25,11 @@ module.exports = passport.use(new FacebookStrategy({
             }
             // Find a User
             if (!err && user !== null) {
-                console.log("found user   "+user.OauthID);
-
+                User.update({oauthID: profile.id}, { avatar: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg'}, { multi: false }, function (err, result) {
+                    done(null, user);
+                })
                 // save it in session
-                done(null, user);
+
 
             // First time User
             } else {
