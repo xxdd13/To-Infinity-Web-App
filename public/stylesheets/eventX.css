@@ -65,7 +65,11 @@ h1 {
     overflow: hidden;
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
 }
-.card .wrapper:hover .data {
+.card .wrapper .data {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+.card .wrapper:active .data {
     -webkit-transform: translateY(0);
     transform: translateY(0);
 }
@@ -110,7 +114,12 @@ h1 {
 .cardX .wrapper {
     background: black;
 }
-.cardX .wrapper:hover .menu-content span {
+.cardX .wrapper .menu-content span {
+    -webkit-transform: translate(-50%, -10px);
+    transform: translate(-50%, -10px);
+    opacity: 1;
+}
+.cardX .wrapper:active .menu-content span {
     -webkit-transform: translate(-50%, -10px);
     transform: translate(-50%, -10px);
     opacity: 1;
@@ -181,12 +190,13 @@ h1 {
 }
 .createdDate{
     //text-shadow:0px 0px 10px rgba(0,0,0,0.7);
+    color:white;
 }
 
-.buttons{
+form .buttons{
     text-align:center;
 }
-button {
+form button {
     background: rgba(0,0,0,0);
     border: 2px white solid;
     color: #f2f2f2;

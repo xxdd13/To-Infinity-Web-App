@@ -183,16 +183,11 @@ module.exports.event = function(req, res) {
     if(!req.params.eventID){
         return res.send("no ID provided");
     }
-    User.findById(req.session.passport.user, function(err, user) {
+    Event.findById(eventID, function(err, event) {
         if(err) {
-            console.log(err);
-        } else {
-
-            Event.findById(eventID, function(err, event) {
-                if(err) {
                     console.log(err);
-                } else {
-                    if (event!=null){
+        } else {
+        if (event!=null){
 
                         Join.find({eventID:eventID},function(err, joins) {
                             if(err) {
@@ -203,17 +198,27 @@ module.exports.event = function(req, res) {
                                 joins.forEach(function(j) {
                                     userInEvent.push(j.oauthID);
                                 });
-                                User.find({
-                                    'oauthID': { $in: userInEvent}
-                                }, function(err, users){
+                                Promise.all([
+                                    Like.find({oauthID:req.user.oauthID,eventID:eventID}, function(err, liked) {}),
+                                    User.find({'oauthID': { $in: userInEvent}}, function(err, users){}),
+                                    User.findOne({oauthID: event.creator}, function(err, creator){}),
+                                    Join.find({oauthID:req.user.oauthID,eventID:eventID}, function(err, joinedEvents) {})
 
+                                ]).then( ([ liked, users,creator,joinedEvents ]) => {
+                                    res.render('event', { user: req.user, event,event,userInEvent:users,creator:creator,myLikes:liked,myEvents:joinedEvents});
+                                });
+
+
+                                //find users who joined this event
+                                /*
+                                User.find({'oauthID': { $in: userInEvent}}, function(err, users){
+                                    //find the creator
                                     User.findOne({oauthID: event.creator}, function(err, creator){
-                                        console.log(creator.name)
-                                        console.log(creator)
                                         res.render('event', { user: user, event,event,userInEvent:users,creator:creator});
                                     });
 
                                 });
+                                */
                             }
                         });
 
@@ -224,9 +229,6 @@ module.exports.event = function(req, res) {
 
                 }
             });
-        }
-    });
-
 
 };
 

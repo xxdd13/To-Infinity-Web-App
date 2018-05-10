@@ -30,11 +30,42 @@
                     <span class="createdDate"><%= event.created%></span>
                 </div>
                 <ul class="menu-content">
-                    <li>
-                        <a href="#" class="fa fa-bookmark-o"></a>
+
+                    <li><% if (myLikes.indexOf(String(event._id))!=-1) { %>
+                        <a class="fa fa-heart" style="font-size:16px;color:#ff4d68">
+                            <% } else { %>
+                            <a  onClick="return ajax('<%=event._id%>');" class="fa fa-heart-o" style="font-size:16px;">
+                                <% }; %>
+                                <% if(event.likes<1||event.likes==null){ %>
+                                <span id="likeNum<%=event._id%>">0</span>
+                                <% } else { %>
+                                <span id="likeNum<%=event._id%>"><%=event.likes%> </span>
+                                <% }; %>
+
+                            </a>
                     </li>
-                    <li><a href="#" class="fa fa-heart-o"><span>130</span></a></li>
-                    <li><a href="#" class="fa fa-comment-o"><span>13</span></a></li>
+                    </form>
+                    <!--
+                    <li><a class="fa fa-user" style="font-size:16px;"><span><%=event.going%></span></a></li>
+                    -->
+                    <% if (myEvents.indexOf(String(event._id))!=-1) { %>
+                    <li style="padding:0px;margin:0px;  ">
+                        <form id="quit<%=event._id%>" action="/quitEvent" method="POST">
+                            <input type="hidden" name="eventID" value="<%=event._id%>"/>
+                            <button onClick=document.getElementById('quit<%=event._id%>').submit()>Joined<p class="fa fa-check"></button>
+                        </form>
+                    </li>
+
+                    <% } else { %>
+                    <li style="padding:0px;margin:0px;  ">
+                        <form id="<%=event._id%>" action="/join" method="POST">
+                            <input type="hidden" name="eventID" value="<%=event._id%>"/>
+                            <button onClick=document.getElementById('<%=event._id%>').submit()>Join</button>
+                        </form>
+
+                    </li>
+
+                    <%}%>
                 </ul>
             </div>
 

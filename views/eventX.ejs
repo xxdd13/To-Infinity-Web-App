@@ -27,7 +27,7 @@
 <header>
     <% include nav %>
 </header>
-
+<div class="container-fluid">
 <% events.forEach((event) => { %>
 
 
@@ -38,7 +38,7 @@
             <div class="header">
                 <div class="date">
 
-                    <span class="createdDate"><%= event.created%></span>
+                    <a href="/event/<%= event.id %>"><span class="createdDate"><%= event.created%></span></a>
                 </div>
                 <ul class="menu-content">
 
@@ -91,11 +91,8 @@
 </div>
 
 
-
-
-
-
 <% }) %>
+</div>
 
 
 
