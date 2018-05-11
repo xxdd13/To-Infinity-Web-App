@@ -1,6 +1,6 @@
 //heroku  https://git.heroku.com/murmuring-inlet-97299.git
 
-const dev = 0;  // Local = 1, heroku = 0   don't forget to change config.js in /configertion
+const dev = 1;  // Local = 1, heroku = 0   don't forget to change config.js in /configertion
 
 const express = require('express');
 const mongoose = require('mongoose');
