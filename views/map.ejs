@@ -102,17 +102,30 @@
                 var latitude = results[0].geometry.location.lat();
                 var longitude = results[0].geometry.location.lng();
 
-                var autocomplete = new google.maps.places.Autocomplete('Melbourne');
+                var autocomplete = new google.maps.places.Autocomplete('<%=user.city%>');
                 var place = autocomplete.getPlace();
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat:  latitude, lng:  longitude},
                     zoom: 16
                 });
+                var image = '/images/me.png';
 
                 marker = new google.maps.Marker({
                     position: new google.maps.LatLng(latitude, longitude),
-                    map: map
+                    map: map,
+                    title:"My city",
+                    icon: image
+
                 });
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+                <% events.forEach((event) => { %>
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(<%=event.lat%>, <%=event.long%>),
+                        map: map,
+
+                    });
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                <% }) %>
 
             }
         });

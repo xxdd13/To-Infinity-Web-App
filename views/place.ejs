@@ -1,0 +1,12 @@
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1--POJ59u8OwyG0bkRsf21BHAgPU5dDw&libraries=places&callback=initialize"
+        async defer></script>
+<script>
+    function initialize() {
+        var options = {
+            types: ['(cities)']
+        };
+        var input = document.getElementById('searchTextField');
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+    }
+</script>

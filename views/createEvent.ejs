@@ -35,7 +35,7 @@
                 <div class="bar"></div>
             </div>
             <div class="input-container">
-                <input type="text" id="location" name="location" required="required"/>
+                <input type="text" id="searchTextField"  autocomplete="on" name="location" required="required"/>
                 <label for="#{label}">City</label>
                 <div class="bar"></div>
             </div>
@@ -78,11 +78,18 @@
                 </div>
 
                 <script>
-                    // This example requires the Places library. Include the libraries=places
-                    // parameter when you first load the API. For example:
-                    // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+                    function initialize() {
+                        var options = {
+                            types: ['(cities)']
+                        };
+                        var input = document.getElementById('searchTextField');
+                        var autocomplete = new google.maps.places.Autocomplete(input, options);
+                        var input = document.getElementById('searchTextField').placeholder=" ";
+                    }
 
                     function initMap() {
+
+                        initialize();
                         var map = new google.maps.Map(document.getElementById('map'), {
                             center: {lat: -33.8688, lng: 151.2195},
                             zoom: 13
