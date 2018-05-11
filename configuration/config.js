@@ -6,7 +6,7 @@ module.exports={
 
     "call_back_url"          :     "https://murmuring-inlet-97299.herokuapp.com/auth/facebook/callback/",
     //"callback_url"          :     "https://localhost:3000/auth/facebook/callback/",
-    "call_callback_url_ig"          :     "https://murmuring-inlet-97299.herokuapp.com/auth/instagram/callback/",
+    "callback_url_ig"          :     "https://murmuring-inlet-97299.herokuapp.com/auth/instagram/callback/",
     //"callback_url_ig"          :     "https://localhost:3000/auth/instagram/callback/",
 
     "use_database"          :     "false",
