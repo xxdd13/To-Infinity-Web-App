@@ -303,3 +303,129 @@ button:hover{
 .maprow{
     margin-top:0px;
 }
+
+
+
+.dbutton {
+    display: block;
+    background-color: #c0392b;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    margin: auto;
+    color: #fff;
+    position: absolute;
+
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+}
+.dbutton span,
+.dbutton .icon {
+    display: block;
+    height: 100%;
+    text-align: center;
+    position: absolute;
+    top: 0;
+}
+.dbutton span {
+    width: 72%;
+    line-height: inherit;
+    font-size: 11px;
+    text-transform: uppercase;
+    left: 0;
+    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+}
+.dbutton span:after {
+    content: '';
+    background-color: #a53125;
+    width: 2px;
+    height: 70%;
+    position: absolute;
+    top: 15%;
+    right: -1px;
+}
+.dbutton .icon {
+    width: 28%;
+    right: 0;
+    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+}
+.dbutton .icon .fa {
+    font-size: 30px;
+    vertical-align: middle;
+    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4), height 0.25s ease;
+}
+.dbutton .icon .fa-remove {
+    height: 36px;
+}
+.dbutton .icon .fa-check {
+    display: none;
+}
+.dbutton.success span, .button:hover span {
+    left: -72%;
+    opacity: 0;
+}
+.dbutton.success .icon, .button:hover .icon {
+    width: 100%;
+}
+.dbutton.success .icon .fa, .button:hover .icon .fa {
+    font-size: 45px;
+}
+.dbutton.success {
+    background-color: #27ae60;
+}
+.dbutton.success .icon .fa-remove {
+    display: none;
+}
+.dbutton.success .icon .fa-check {
+    display: inline-block;
+}
+.dbutton:hover {
+    opacity: .9;
+}
+.dbutton:hover .icon .fa-remove {
+    height: 46px;
+}
+.dbutton:active {
+    opacity: 1;
+}
+
+
+.rubber_stamp {
+    font-family: 'Vollkorn', serif;
+    font-size: 39px;
+    line-height: 45px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: red;
+    border: 7px solid red;
+    float: left;
+    padding: 10px 7px;
+    border-radius: 10px;
+
+    opacity: 0.8;
+    -webkit-transform: rotate(-10deg);
+    -o-transform: rotate(-10deg);
+    -moz-transform: rotate(-10deg);
+    -ms-transform: rotate(-10deg);
+    position:absolute;
+    top:32%;
+}
+.rubber_stamp::after {
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    top: -10px;
+    left: -10px;
+    padding: 10px;
+    background: url('/images/noise.png') repeat;
+}
+#color-title{
+    font-size:26px;
+    font-weight:bold;
+    color:#1ABC9C;
+}

@@ -7,7 +7,7 @@
     <% include head %>
     <link rel="stylesheet" href="/stylesheets/event.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
-
+    <script src="/javascripts/event.js"></script>
 </head>
 <body>
 
@@ -48,7 +48,7 @@
                     <!--
                     <li><a class="fa fa-user" style="font-size:16px;"><span><%=event.going%></span></a></li>
                     -->
-                    <% if (myEvents.indexOf(String(event._id))!=-1) { %>
+                    <% if (myEvents!=null) { %>
                     <li style="padding:0px;margin:0px;  ">
                         <form id="quit<%=event._id%>" action="/quitEvent" method="POST">
                             <input type="hidden" name="eventID" value="<%=event._id%>"/>
@@ -68,7 +68,9 @@
                     <%}%>
                 </ul>
             </div>
-
+            <% if (!event.active) { %>
+            <div class="rubber_stamp">Deleted</div>
+            <% }; %>
         </div>
         <div id="map_canvas" style="width:100%; height:100%"></div>
         <div class="content-2">
@@ -76,6 +78,20 @@
                 <p>Host</p>
                 <img class="user-list__avatar-creator" style="background-image: url(<%=creator.avatar%>);">
                 <div class="user-list__name"><%=creator.name%></div>
+                <% if (user.oauthID==creator.oauthID) { %>
+                <div class="user-list__name">
+                    <form id="devent" action="/delete-event" method="POST">
+                        <input type="hidden" name="eventID" value="<%=event._id%>"/>
+                        <a class="dbutton"  role="button" onClick=document.getElementById('devent').submit()>
+                            <span>Delete Event</span>
+                            <div class="icon">
+                                <i class="fa fa-remove"></i>
+                                <i class="fa fa-check"></i>
+                            </div>
+                        </a>
+                    </form>
+                </div>
+                <% }; %>
             </li>
             <h1 class="title"><%= event.title %></h1>
             <p class="text"><%= event.description %></p>
@@ -90,6 +106,7 @@
     <div id="map"></div>
 </div>
 <div class="row">
+    <div id="color-title">Participants</div>
     <ul class="user-list">
         <% userInEvent.forEach((uie) => { %>
         <li class="user-list__item">
@@ -99,7 +116,7 @@
         <% }) %>
     </ul>
 </div>
-<div id="map"></div>
+
 
 
 <style>

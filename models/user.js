@@ -46,7 +46,8 @@ var UserSchema = new mongoose.Schema({
     },
     avatar:{
         type:String
-    }
+    },
+    city:{type:String}
 
 });
 

@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
     <% include head %>
     <link rel="stylesheet" href="/stylesheets/profile.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.0/anime.min.js"></script>
+
+
 
 
 </head>
@@ -17,99 +20,96 @@
 </header>
 
 
+<div class="hero">
+    <!--   <h1>UX / UI Designer & Developer Working in Detroit.</h1> -->
+    <div class="hero-sides hero-sides__left">
 
 
+            <div class="card">
+                <!-- Header -->
+                <div class="card-header">
 
-        <div class="container-fluid">
+                    <div class="card-header__avatar" style="background:url(<%= user.avatar %>) no-repeat center;
 
-
-                    <div class="card">
-                        <div style="background:url(<%= user.avatar %>) no-repeat center;-webkit-background-size: cover;
-                                -moz-background-size: cover;
-                                -o-background-size: cover;
-                                background-size: cover;
-                                box-sizing:border-box;
-                                border-radius: 50%;
-                                position:absolute;
-                                width:200px;
-                                height:200px;
-                                z-index:99;
-                                margin-left:-100px;
-                                border: 10px solid rgba(13,88,77,0.3);
-
-                                left:50%;
-                                ">
-
-                        </div>
-                        <!-- Header -->
-                        <div class="card-header">
-
-                            <div class="card-header__avatar" style="background:#efefef"></div>
+                            box-sizing:border-box;
+                            border-radius: 50%;
+                            width:200px;
+                            height:200px;
+                            z-index:99;
+                            margin-left: calc(50% - 100px);;
+                            border: 10px solid rgba(13,88,77,0.3);"></div>
 
 
-                        </div>
-                        <!-- Content-->
-                        <div class="card-content">
-                            <div class="card-content__username"><%= user.name %></div>
-                            <div class="card-content__bio">
-                                <form action="/updateBio" method="POST">
-                                    <input id="bioForm" type="text-area" name="bio" maxlength="150" placeholder="<%=user.bio%>"/>
-                                    <div class="biob">
-                                        <button id="button"></button>
-                                    </div>
-                                </form>
+                </div>
+                <!-- Content-->
+                <div class="card-content">
+                    <div class="card-content__username"><%= user.name %></div>
+                    <div class="card-content__bio">
+                        <h4>Bio</h4>
+                        <form action="/updateBio" method="POST">
+                            <input id="bioForm" type="text-area" name="bio" maxlength="150" value="<%=user.bio%>"/>
+                            <h4>City</h4>
 
-
-
-
+                            <input id="searchTextField"  autocomplete="on" type="text" name="city" maxlength="150"
+                                   value="<% if(user.city) { %><%=user.city%><% };%>" class="updatef"/>
+                            <div class="biob">
+                                <button id="button"></button>
                             </div>
-
-                        </div>
-
-                        <div class="m-dropdown">
-                            <div class="e-button open">
-                                Past Events
-                                <div class="e-burger">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                            </div>
-                            <ul class="e-list">
-                                <% joins.forEach((join) => { %>
-                                <li>
-                                    <a href="/event/<%=join.eventID%>">
-                                        Date:<%=join.created.toDateString()%></a>
-
-                                </li>
-                                <%})%>
-
-                            </ul>
-                        </div>
-
-                        <!-- Footer-->
-                        <div class="card-footer">
-                            <div class="card-footer__pens"> <span>20</span>
-                                <div class="label">Age</div>
-                               </div>
-                            <div class="card-footer__followers"> <span><%=joins.length%></span>
-                                <div class="label">Joined Events</div>
-                            </div>
-                            <div class="card-footer__following"> <span>Melbourne</span>
-                                <div class="label">Location</div><br><br><br>
-                            </div>
-                        </div>
-                        <!--
-                        <div class="card-footer"><span>    some other stuff, tba later</span></div>
-                        -->
+                        </form>
                     </div>
 
 
+                </div>
+
+
+
+            </div>
+
+
+
+
+    </div>
+    <div class="hero-sides hero-sides__right">
+        <div class="m-dropdown">
+            <div class="e-button open">
+                Past Events
+                <div class="e-burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <ul class="e-list">
+                <% joins.forEach((join) => { %>
+                <li>
+                    <a href="/event/<%=join.eventID%>">
+                        Date:<%=join.created.toDateString()%></a>
+
+                </li>
+                <%})%>
+
+            </ul>
         </div>
+    </div>
+</div>
+
+
+
 
 
 <script src="/javascripts/profile.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1--POJ59u8OwyG0bkRsf21BHAgPU5dDw&libraries=places&callback=initialize"
+        async defer></script>
+<script>
+    function initialize() {
+        var options = {
+            types: ['(cities)']
+        };
+        var input = document.getElementById('searchTextField');
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+    }
+</script>
 <footer>
     <% include footer %>
 </footer>

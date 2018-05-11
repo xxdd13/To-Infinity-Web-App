@@ -14,8 +14,26 @@ const Like = require('../models/like');
 const fs = require('fs');
 
 module.exports.index = function(req, res) {
-    res.render('index',{user:((req.session.user)?(req.session.user): false),user: req.user});
-    //res.render('index',null);
+    var myEvents = [];
+    var myLikes=[];
+    Event.find({active:true}).sort({'created': 'desc'}).exec(function(err, events) {
+        if (!err){
+            Join.find({oauthID:req.user.oauthID}, function(err, joinedEvents) {
+                for (var i in joinedEvents) {
+                    myEvents.push(joinedEvents[i].eventID);
+                }
+                Like.find({oauthID:req.user.oauthID}, function(err, liked) {
+                    for (var j in liked) {
+                        myLikes.push(liked[j].eventID);
+
+                    }
+                    res.render('index', { user: req.user, events:events,myEvents:myEvents,myLikes:myLikes});
+                });
+
+            });
+
+        } else {throw err;}
+    });
 
 
 };
@@ -212,18 +230,6 @@ module.exports.event = function(req, res) {
                                 ]).then( ([ liked, users,creator,joinedEvents ]) => {
                                     res.render('event', { user: req.user, event,event,userInEvent:users,creator:creator,myLikes:liked,myEvents:joinedEvents});
                                 });
-
-
-                                //find users who joined this event
-                                /*
-                                User.find({'oauthID': { $in: userInEvent}}, function(err, users){
-                                    //find the creator
-                                    User.findOne({oauthID: event.creator}, function(err, creator){
-                                        res.render('event', { user: user, event,event,userInEvent:users,creator:creator});
-                                    });
-
-                                });
-                                */
                             }
                         });
 
@@ -321,10 +327,10 @@ module.exports.join = function(req, res) {
 
 
 module.exports.updatebio = function(req, res) {
-    var text = req.body.bio
+    var text = req.body.bio;
+    var city = req.body.city;
 
-
-    User.update({_id: req.session.passport.user}, { bio: text}, { multi: true }, function (err, result) {
+    User.update({_id: req.session.passport.user}, { bio: text,city:city}, { multi: true }, function (err, result) {
         res.redirect("/profile")
     })
 
@@ -392,7 +398,7 @@ module.exports.like = function(req, res) {
 module.exports.deleteEvent = function(req, res) {
     //events not truly deleted, but rather a deactive status
     var eventID = req.body.eventID;
-    Event.update({_id: eventID}, { active: true}, { multi: false }, function (err, result) {
+    Event.update({_id: eventID}, { active: false}, { multi: false }, function (err, result) {
         res.redirect("/eventX")
     });
 
