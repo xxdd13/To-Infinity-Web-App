@@ -122,6 +122,7 @@
                     marker = new google.maps.Marker({
                         position: new google.maps.LatLng(<%=event.lat%>, <%=event.long%>),
                         map: map,
+                        title:'<%=event.title%>',
 
                     });
                     marker.setAnimation(google.maps.Animation.BOUNCE);

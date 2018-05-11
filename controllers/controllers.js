@@ -17,6 +17,10 @@ module.exports.index = function(req, res) {
     var myEvents = [];
     var myLikes=[];
     Event.find({active:true}).sort({'created': 'desc'}).exec(function(err, events) {
+        if(!req.user){
+            return res.render('landing');
+        }
+
         if (!err){
             Join.find({oauthID:req.user.oauthID}, function(err, joinedEvents) {
                 for (var i in joinedEvents) {

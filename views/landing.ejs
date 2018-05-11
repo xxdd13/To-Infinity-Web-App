@@ -1,0 +1,56 @@
+<!-- views/landing.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include head %>
+    <title>To infinity</title>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/index.css">
+    <link rel="stylesheet" href="stylesheets/needlogin.css">
+    <link rel="stylesheet" href="stylesheets/landing.css">
+
+</head>
+<body class="index-body">
+<div class="fheight">
+    <div class="logo">
+        <h1 style="color:white;font-size:90px;position:absolute;left:50%;width:300px;margin-left:-150px;">To</h1>
+        <svg viewBox="-2000 -1000 4000 2000">
+            <path id="inf" d="M354-354A500 500 0 1 1 354 354L-354-354A500 500 0 1 0-354 354z"></path>
+            <use xlink:href="#inf" stroke-dasharray="1570 5143" stroke-dashoffset="6713px"></use>
+        </svg>
+    </div>
+    <div class="sub2">
+        <h2>Looking for fun in a place you have never been before?</h2>
+    </div>
+    <span class='pulse-button'><a href="#d2">Start</a></span>
+
+</div>
+<div class="fheight" id="d2">
+    <div class="terminal" data-content="~/xin/webserver/terminal">
+
+
+        <div class="terminal-hover">
+            <p>Login with Facebook account</p>
+
+        </div>
+        <h3 style="text-align:center;">Log in</h3>
+        <a href="/auth/facebook">
+        <div class="fblogin">
+
+        </div>
+        </a>
+
+
+    </div>
+</div>
+
+
+
+<footer>
+    <% include footer %>
+</footer>
+
+</body>
+</html>

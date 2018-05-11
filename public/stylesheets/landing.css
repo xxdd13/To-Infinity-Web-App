@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css?family=PT+Mono&subset=cyrillic");
+@import url("https://fonts.googleapis.com/css?family=PT+Sans&subset=cyrillic");
+body, html {
+  height: 100%;
+}
+body{
+  font-family: 'Pacifico', cursive;
+  background-attachment: fixed}
+.fheight{
+  height:100%;
+}
+.sub2{font-family: 'Gloria Hallelujah', cursive;}
+svg {
+  max-width: 50em;
+  border-radius: 3px;
+  fill: none;
+  stroke: #222;
+  stroke-linecap: round;
+  stroke-width: 8%
+}
+
+use {
+  stroke: #fff;
+  animation: a 2s linear infinite
+}
+
+@keyframes a { to { stroke-dashoffset: 0px } }
+
+.logo{
+  margin-top:10%;
+}
+
+.pulse-button {
+  position: relative;
+  top: 20%;
+  left: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+  display: block;
+  width: 100px;
+  height: 100px;
+  font-size: 1.3em;
+  text-align: center;
+  line-height: 100px;
+  letter-spacing: -1px;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  background: #f0211a;
+  cursor: pointer;
+  box-shadow: 0 0 0 0 rgba(251, 0, 45, 0.51);
+  -webkit-animation: pulse 1.5s infinite;
+}
+
+
+
+@-webkit-keyframes pulse {
+  0% {
+    -moz-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+  70% {
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    box-shadow: 0 0 0 50px rgba(90, 153, 212, 0);
+  }
+  100% {
+    -moz-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
+  }
+}
+
+a,a:hover{
+  color:white
+}
+.terminal{
+  top:20%;
+  left:25%;
+  width:50%;
+}
+.terminal p{
+  font-family: "PT Mono", monospace;
+  font-size: 16px;
+}
+.terminal-hover{
+  position:absolute;
+}
+.fblogin{
+  position: absolute;
+  border-radius: 5px;
+  left: 50%;
+  margin-left: -150px;
+  width: 300px;
+  height: 49px;
+  background-size: cover;
+  background-image: url(/images/fb-login.png);
+}
