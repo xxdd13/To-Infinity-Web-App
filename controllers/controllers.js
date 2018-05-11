@@ -3,11 +3,6 @@ const faker = require('../models/faker');
 const User = require('../models/user');
 const Event = require('../models/Event');
 
-   // apiKey: 'AIzaSyD1--POJ59u8OwyG0bkRsf21BHAgPU5dDw', // for Mapquest, OpenCage, Google Premier
-
-
-
-
 var Join = require('../models/join');
 const Like = require('../models/like');
 

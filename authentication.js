@@ -1,7 +1,8 @@
-var passport = require('passport');
-var FacebookStrategy = require('passport-facebook').Strategy;
-var User = require('./models/user.js');
-var config = require('./configuration/config.js');
+const passport = require('passport');
+const FacebookStrategy = require('passport-facebook').Strategy;
+const InstagramStrategy = require('passport-instagram').Strategy
+const User = require('./models/user.js');
+const config = require('./configuration/config.js');
 
 
 module.exports = passport.use(new FacebookStrategy({
@@ -58,9 +59,41 @@ module.exports = passport.use(new FacebookStrategy({
     }
 ));
 
+passport.use(new InstagramStrategy({
+        clientID:  config.INSTAGRAM_CLIENT_ID,
+        clientSecret:  config.INSTAGRAM_CLIENT_SECRET,
+        callbackURL: config.callback_url_ig
+    },
+    function(accessToken, refreshToken, profile, done) {
+        console.log(profile)
+        User.findOne({ oauthID: profile.id }, function(err, user) {
+            if(err) {
+                console.log("user fond one error "+err);  // handle errors!
+            }
+            if (!err && user !== null) {
 
-/*
-<p>ID: <%= user.id %></p>
-<p>Username: <%= user.username %></p>
-<p>Name :<%= user.displayName %></p>
-*/
+                const newAvatar = profile._json.data.profile_picture ? profile._json.data.profile_picture : '/images/faces/unknown-user-pic.jpg';
+                console.log(profile._json.data.profile_picture)
+                User.update({oauthID: profile.id}, { avatar: newAvatar},{ multi: false }, function (err, result) {
+                    done(null, user);
+                });
+            } else {
+                user = new User({
+                    oauthID: profile.id,
+                    name: profile.displayName,
+                    created: Date.now(),
+                    bio: profile.bio,
+                    avatar:profile.profile_picture ? profile.profile_picture : '/images/faces/unknown-user-pic.jpg'
+                });
+                user.save(function(err) {
+                    if(err) {
+                        console.log("user save error "+ err);  // handle errors!
+                    } else {
+                        done(null, user);
+                    }
+                });
+            }
+        });
+    }
+));
+

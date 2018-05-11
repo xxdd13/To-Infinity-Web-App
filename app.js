@@ -15,8 +15,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-
-//const FacebookStrategy = require('passport-facebook').Strategy;
 const User = require('./models/user');
 const Image = require('./models/Image');
 const Event = require('./models/Event');
@@ -57,7 +55,6 @@ app.use(session({
     })
 }));
 
-
 //facebook login, use session before init and passport session
 app.use(passport.initialize());
 app.use(passport.session());
@@ -91,61 +88,17 @@ app.get('/auth/facebook/callback',
         // If successful, return to profile
         res.redirect('/profile');
     });
-
+app.get('/auth/instagram', passport.authenticate('instagram'));
+app.get('/auth/instagram/callback',
+    passport.authenticate('instagram', { failureRedirect: '/' }),
+    function(req, res) {
+        res.redirect('/profile');
+    });
 
 
 
 app.use(multer({dest:'./uploads/'}).single('img'));
 
-/*
-
-
-app.post('/upload', upload.single('img'), function (req, res, next) {
-    // req.file is the `img` file
-    // req.body will hold the text fields, if there were any
-    if(!req.file){
-        res.send("no file");
-        console.log("no file")
-    }
-    else{
-        console.log(req.file);
-        var image = new Image({
-            text: req.file.originalname,
-            image: fs.readFileSync(req.file.path)
-        });
-        image.save(function (err, img) {
-
-
-            image.save().then((result) => {
-                res.send(result);
-            });
-            console.log(req.file);
-            res.send('upload file success');
-            console.log('success');
-        });
-
-
-    }
-});
-app.get('/de', function(){
-    Event.collection.dropIndexes();
-    Event.collection.drop();
-});
-
-*/
-
-/* depricated for now
-router.get('/img', function(req, res, next) {
-    Image.find({Image}).then((images) => {
-        res.render('img', {images: images});
-    });
-});
-*/
-
-
-
-
-// View Engine Setuo (views)
 app.engine('html', ejs.renderFile); // Rendering HTML
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');  // Using EJS
