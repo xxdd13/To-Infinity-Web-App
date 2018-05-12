@@ -266,8 +266,9 @@ body {
 @media only screen and (max-width: 930px) {
   .indexCard{
     width: 100%!important;
+    margin: 0px;
     margin-bottom:40px;
-    max-height: 400px;
+    max-height: 500px;
   }
 
   .indexCard .data{
