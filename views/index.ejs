@@ -9,9 +9,21 @@
     <link rel="stylesheet" href="stylesheets/index.css">
     <link rel="stylesheet" href="/stylesheets/eventX.css"/>
     <link rel="stylesheet" href="/stylesheets/eventX2.css"/>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
     <script>
-        function ajax(eventID){
+        function ajax(obj,eventID){
+            if(obj.classList.contains("fa-heart")){
+                obj.style="color:#fff";
+                obj.className ="fa fa-heart-o";
+                document.getElementById("likeNum"+eventID).innerHTML= +document.getElementById("likeNum"+eventID).innerHTML-1;
+            }
+            else{
+                obj.className ="fa fa-heart";
+                obj.style="color:#ff4d68";
+                document.getElementById("likeNum"+eventID).innerHTML= +document.getElementById("likeNum"+eventID).innerHTML+1;
+            }
+
             var formdata = eventID;
             xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange=function(){
@@ -32,25 +44,45 @@
 </header>
 
 <div class="container-fluid">
+
+    <div class="eventfilter">
+
+        <h5 id="citytitle" class="filtertitle">Same City</h5>
+        <svg class="filter" version="1.1">
+            <defs>
+                <filter id="gooeyness">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10" result="gooey" />
+                    <feComposite in="SourceGraphic" in2="gooey" operator="atop" />
+                </filter>
+            </defs>
+        </svg>
+        <div class="toggle">
+            <div class="bar"></div>
+            <div class="knob"></div>
+        </div>
+    </div>
+
+
     <div class="row">
         <h1>Discover Possibilities</h1>
         <% include map %>
         <% events.forEach((event) => { %>
 
 
-        <div class="cardX card">
-            <div class="wrapper"style="background:url('/img/<%= event.id %>');background-size:cover">
+        <div class="cardX card indexCard <% if (!user.city|| user.city.indexOf(event.location)!=-1) {%>showX<%}else{%>hideX<%}%>">
+            <div class="wrapper"style="background:url('/img/<%= event.id %>') no-repeat;background-size: auto 300px;" onClick="map.setCenter({lat: <%=event.lat%>, lng: <%=event.long%>});">
                 <div class="header">
                     <div class="date">
 
-                        <a href="/event/<%= event.id %>"><span class="createdDate"><%= event.created%></span></a>
+                        <a href="/event/<%= event.id %>"><span class="createdDate"><%= event.created.toDateString()%></span></a>
                     </div>
                     <ul class="menu-content">
 
                         <li><% if (myLikes.indexOf(String(event._id))!=-1) { %>
-                            <a class="fa fa-heart" style="font-size:16px;color:#ff4d68">
+                            <a class="fa fa-heart" onClick="return ajax(this,'<%=event._id%>');" style="font-size:16px;color:#ff4d68">
                                 <% } else { %>
-                                <a  onClick="return ajax('<%=event._id%>');" class="fa fa-heart-o" style="font-size:16px;">
+                                <a  onClick="return ajax(this,'<%=event._id%>');" class="fa fa-heart-o" style="font-size:16px;">
                                     <% }; %>
                                     <% if(event.likes<1||event.likes==null){ %>
                                     <span id="likeNum<%=event._id%>">0</span>
@@ -60,7 +92,6 @@
 
                                 </a>
                         </li>
-                        </form>
                         <!--
                     <li><a class="fa fa-user" style="font-size:16px;"><span><%=event.going%></span></a></li>
                     -->
@@ -100,6 +131,6 @@
 <footer>
     <% include footer %>
 </footer>
-
+<script src="/javascripts/filter.js"></script>
 </body>
 </html>

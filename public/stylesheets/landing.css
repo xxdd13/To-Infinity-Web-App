@@ -92,24 +92,3 @@ a,a:hover{
 .terminal-hover{
   position:absolute;
 }
-.fblogin{
-  position: absolute;
-  border-radius: 5px;
-  left: 50%;
-  margin-left: -150px;
-  width: 300px;
-  height: 49px;
-  background-size: cover;
-  background-image: url(/images/fb-login.png);
-}
-.iglogin{
-  margin-top:100px;
-  position: absolute;
-  border-radius: 5px;
-  left: 50%;
-  margin-left: -150px;
-  width: 300px;
-  height: 49px;
-  background-size: cover;
-  background-image: url(/images/ins-login.png);
-}

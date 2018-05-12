@@ -7,7 +7,32 @@
     <% include head %>
     <link rel="stylesheet" href="/stylesheets/event.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
-    <script src="/javascripts/event.js"></script>
+
+    <script>
+        function ajax(obj,eventID){
+            if(obj.classList.contains("fa-heart")){
+                obj.style="color:#fff";
+                obj.className ="fa fa-heart-o";
+                document.getElementById("likeNum"+eventID).innerHTML= +document.getElementById("likeNum"+eventID).innerHTML-1;
+            }
+            else{
+                obj.className ="fa fa-heart";
+                obj.style="color:#ff4d68";
+                document.getElementById("likeNum"+eventID).innerHTML= +document.getElementById("likeNum"+eventID).innerHTML+1;
+            }
+
+            var formdata = eventID;
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function(){
+                if(xmlhttp.readyState==4 && xmlhttp.status==200){
+                    document.getElementById("likeNum"+eventID).innerHTML=xmlhttp.responseText;
+                };
+            };
+            xmlhttp.open("POST","",true);
+            xmlhttp.send(formdata);
+            return false;
+        }
+    </script>
 </head>
 <body>
 
@@ -27,14 +52,14 @@
             <div class="header">
                 <div class="date">
 
-                    <span class="createdDate"><%= event.created%></span>
+                    <span class="createdDate"><%= event.created.toDateString()%></span>
                 </div>
                 <ul class="menu-content">
 
-                    <li><% if (myLikes.indexOf(String(event._id))!=-1) { %>
-                            <a class="fa fa-heart" style="font-size:16px;color:#ff4d68">
+                    <li><% if (myLikes!=null) { %>
+                        <a class="fa fa-heart" onClick="return ajax(this,'<%=event._id%>');" style="font-size:16px;color:#ff4d68">
                             <% } else { %>
-                            <a  onClick="return ajax('<%=event._id%>');" class="fa fa-heart-o" style="font-size:16px;">
+                            <a  onClick="return ajax(this,'<%=event._id%>');" class="fa fa-heart-o" style="font-size:16px;">
                                 <% }; %>
                                 <% if(event.likes<1||event.likes==null){ %>
                                 <span id="likeNum<%=event._id%>">0</span>
@@ -94,8 +119,9 @@
                 <% }; %>
             </li>
             <h1 class="title"><%= event.title %></h1>
-            <p class="text"><%= event.description %></p>
+            <p class="des"><%= event.description %></p>
             <p class="text">Location:<%=event.location%></p>
+            <p class="text">Prefered Language:<%=event.prefLang%></p>
         </div>
     </div>
 

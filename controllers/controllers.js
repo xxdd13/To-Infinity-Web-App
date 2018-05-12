@@ -319,7 +319,7 @@ module.exports.join = function(req, res) {
         eventID: req.body.eventID
     });
     join.save(function (err, eve) {
-        res.redirect("/eventX");
+        res.redirect("/event/"+eventID);
     });
 };
 
@@ -328,8 +328,9 @@ module.exports.join = function(req, res) {
 module.exports.updatebio = function(req, res) {
     var text = req.body.bio;
     var city = req.body.city;
+    var displayName = req.body.displayName;
 
-    User.update({_id: req.session.passport.user}, { bio: text,city:city}, { multi: true }, function (err, result) {
+    User.update({_id: req.session.passport.user}, { bio: text,city:city,name:displayName}, { multi: true }, function (err, result) {
         res.redirect("/profile")
     })
 
@@ -380,9 +381,19 @@ module.exports.like = function(req, res) {
                 else{
                     console.log("user already liked");
                     if(num==null || !num){num=0}
-                    res.setHeader('Content-Type', 'text/html');
-                    res.writeHead(200);
-                    res.end(String(num));
+                    else{num-=1;}
+                    if(num<0){num=0};
+                    Like.remove({oauthEventID: likeID }, function(err) {
+                        if (!err) {
+                            Event.update({_id: mongoose.Types.ObjectId(id)}, { likes: num}, { multi: false }, function (err, result) {
+                                res.setHeader('Content-Type', 'text/html');
+                                res.writeHead(200);
+                                res.end(String(num));
+                            });
+                        }
+                    });
+
+
                 }
 
 

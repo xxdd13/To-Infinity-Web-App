@@ -12,6 +12,7 @@
 
 
 
+
 </head>
 <body>
 
@@ -43,24 +44,28 @@
 
                 </div>
                 <!-- Content-->
+                <form action="/updateBio" method="POST">
                 <div class="card-content">
-                    <div class="card-content__username"><%= user.name %></div>
-                    <div class="card-content__bio">
-                        <h4>Bio</h4>
-                        <form action="/updateBio" method="POST">
-                            <input id="bioForm" type="text-area" name="bio" maxlength="150" value="<%=user.bio%>"/>
-                            <h4>City</h4>
-
-                            <input id="searchTextField"  autocomplete="on" type="text" name="city" maxlength="150"
-                                   value="<% if(user.city) { %><%=user.city%><% };%>" class="updatef"/>
-                            <div class="biob">
-                                <button id="button"></button>
-                            </div>
-                        </form>
+                    <div class="card-content__username">
+                        <input class="change-name" type="text" name="displayName" value="<%= user.name %>"/>
                     </div>
 
+                    <div class="card-content__bio">
+                        <h4>Bio</h4>
 
+                        <input id="bioForm" type="text-area" name="bio" maxlength="150" value="<%=user.bio%>"/>
+                            <h4>City</h4>
+
+                        <input id="searchTextField"  autocomplete="on" type="text" name="city" maxlength="150"
+                                   value="<% if(user.city) { %><%=user.city%><% };%>" class="updatef"/>
+                        <div class="biob">
+                                <button id="button"></button>
+                        </div>
+
+
+                    </div>
                 </div>
+                </form>
 
 
 

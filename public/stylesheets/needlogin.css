@@ -69,3 +69,55 @@ body {
 .fblogin-img{
     max-width:100%;
 }
+
+a,a:hover{
+    color:white
+}
+.terminal{
+    top:20%;
+    left:25%;
+    width:50%;
+}
+.terminal p{
+    font-family: "PT Mono", monospace;
+    font-size: 16px;
+}
+.terminal-hover{
+    position:absolute;
+}
+.fblogin{
+    position: absolute;
+    border-radius: 5px;
+    left: 50%;
+    margin-left: -150px;
+    width: 300px;
+    height: 49px;
+    background-size: cover;
+    background-image: url(/images/fb-login.png);
+    max-width:100%;
+}
+.iglogin{
+    max-width:100%;
+    margin-top:100px;
+    position: absolute;
+    border-radius: 5px;
+    left: 50%;
+    margin-left: -150px;
+    width: 300px;
+    height: 49px;
+    background-size: cover;
+    background-image: url(/images/ins-login.png);
+}
+.hover-text{
+    margin-top:70px;
+}
+@media only screen and (max-width: 600px) {
+    .iglogin,.fblogin{
+
+
+        margin-left: -75px;
+        width: 150px;
+        height: 25px;
+    }
+
+}

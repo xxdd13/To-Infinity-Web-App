@@ -357,7 +357,11 @@ body{
     min-height:250px;
 }
 
-
+.change-name{
+    display:inline;
+    background:none;
+    text-align:center;
+}
 
 
 

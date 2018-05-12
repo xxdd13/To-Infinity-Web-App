@@ -37,7 +37,8 @@ router.post('/quitEvent',controllers.quitEvent);
 
 router.post('/updatebio',controllers.updatebio);
 router.post('/eventX',controllers.like);
-
+router.post('/event',controllers.like);
+router.post('/index',controllers.like);
 //deletes
 router.get('/de',controllers.deleteAllEvents);
 router.get('/dl',controllers.deleteLikes);

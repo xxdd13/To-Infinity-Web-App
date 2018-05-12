@@ -8,7 +8,18 @@
     <link rel="stylesheet" href="/stylesheets/eventX.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
     <script>
-        function ajax(eventID){
+        function ajax(obj,eventID){
+            if(obj.classList.contains("fa-heart")){
+                obj.style="color:#fff";
+                obj.className ="fa fa-heart-o";
+                document.getElementById("likeNum"+eventID).innerHTML= +document.getElementById("likeNum"+eventID).innerHTML-1;
+            }
+            else{
+                obj.className ="fa fa-heart";
+                obj.style="color:#ff4d68";
+                document.getElementById("likeNum"+eventID).innerHTML= +document.getElementById("likeNum"+eventID).innerHTML+1;
+            }
+
             var formdata = eventID;
             xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange=function(){
@@ -43,9 +54,9 @@
                 <ul class="menu-content">
 
                     <li><% if (myLikes.indexOf(String(event._id))!=-1) { %>
-                            <a class="fa fa-heart" style="font-size:16px;color:#ff4d68">
+                            <a class="fa fa-heart" onClick="return ajax(this,'<%=event._id%>');" style="font-size:16px;color:#ff4d68">
                         <% } else { %>
-                            <a  onClick="return ajax('<%=event._id%>');" class="fa fa-heart-o" style="font-size:16px;">
+                            <a  onClick="return ajax(this,'<%=event._id%>');" class="fa fa-heart-o" style="font-size:16px;">
                         <% }; %>
                             <% if(event.likes<1||event.likes==null){ %>
                             <span id="likeNum<%=event._id%>">0</span>
@@ -55,7 +66,7 @@
 
                         </a>
                     </li>
-                    </form>
+
                     <!--
                     <li><a class="fa fa-user" style="font-size:16px;"><span><%=event.going%></span></a></li>
                     -->

@@ -93,10 +93,16 @@ h1 {
     margin-top: 10px;
     font-weight: 900;
 }
-.card .text {
+.card .des {
     height: 100px;
     margin: 0;
+    margin-top:20px;
     font-size:13px;
+}
+.card .text {
+    margin: 0;
+    font-size:16px;
+    font-weight:450
 }
 .card input[type='checkbox'] {
     display: none;

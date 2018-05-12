@@ -150,3 +150,155 @@ body {
   margin-bottom:60px;
   overflow: hidden;
 }
+
+.filter {
+  position: absolute;
+  visibility: hidden;
+}
+
+.toggle {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  filter: url('#gooeyness');
+  height: 80px;
+  justify-content: center;
+  position: relative;
+  width: 150px;
+}
+
+.bar {
+  background: #aaa;
+  position: absolute;
+  width: 100px;
+  height: 11px;
+  transition: background 250ms linear;
+}
+
+.knob {
+  background: #aaa;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  transform: translateX(-30px);
+  transform-origin: 50%;
+  transition: transform 250ms linear, background 250ms linear;
+}
+
+.toggle.active .knob {
+  animation: Activate 250ms both linear;
+}
+
+.toggle.inactive .knob {
+  animation: Inactivate 250ms both linear;
+}
+
+.toggle.active .bar {
+  background: #5d78b4;
+}
+
+@keyframes Activate {
+  0% { background: #aaa; transform: translateX(-30px); }
+  50% { transform: translateX(0px) scaleX(1.2) scaleY(.7); }
+  90% { transform: translateX(24px) scaleX(0.7) scaleY(.94); }
+  100% { background: #5d78b4; transform: translateX(30px); }
+}
+
+@keyframes Inactivate {
+  0% { background: #5d78b4; transform: translateX(30px); }
+  50% { transform: translateX(0px) scaleX(1.2) scaleY(.7); }
+  90% { transform: translateX(-24px) scaleX(0.7) scaleY(.94); }
+  100% { background: #aaa; transform: translateX(-30px); }
+}
+
+.eventfilter{
+  position:fixed;
+  margin-top:100px;
+}
+.filtertitle{
+  color:#aaa;
+  margin-bottom:-10px;
+}
+.filtertitle.active {
+  animation: ActivateText 250ms both linear;
+}
+
+.filtertitle.inactive{
+  animation: InactivateText 250ms both linear;
+}
+@keyframes ActivateText {
+  0% { color: #aaa; }
+  50% { }
+  90% {  }
+  100% { color: #5d78b4;}
+}
+
+@keyframes InactivateText {
+  0% { color: #5d78b4; }
+  50% { }
+  90% {  }
+  100% { color: #aaa;}
+}
+
+.filterHide{
+  display:none;
+}
+
+.indexCard{
+  width: 45%!important;
+  margin: 22px;
+  max-height: 300px;
+}
+
+
+.indexCard .data{
+  top: 17%!important;
+  bottom:auto!important;
+}
+.indexCard .content{
+  min-height:300px!important;
+}
+.indexCard .text{
+  margin-top:20px!important;
+  max-height:40px!important;
+  overflow:hidden;
+}
+@media only screen and (max-width: 930px) {
+  .indexCard{
+    width: 100%!important;
+    margin-bottom:40px;
+    max-height: 400px;
+  }
+
+  .indexCard .data{
+    top: 36%!important;
+    bottom:auto!important;
+  }
+  .indexCard .content{
+    min-height:400px!important;
+  }
+  .indexCard .text{
+    margin-top:20px!important;
+    max-height:90px!important;
+  }
+
+
+}
+
+@media only screen and (max-width: 1150px) {
+  .eventfilter {
+    position: absolute;
+    margin-top: -20px;
+    left: 50%;
+    margin-left: -75px;
+  }
+  .indexCard .wrapper{
+    background-size: cover !important;
+  }
+
+}
+
+
+
+
+
