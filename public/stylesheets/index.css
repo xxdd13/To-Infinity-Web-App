@@ -270,6 +270,9 @@ body {
     margin-bottom:40px;
     max-height: 500px;
   }
+  .indexCard .wrapper{
+    background-size: cover !important;
+  }
 
   .indexCard .data{
     top: 46%!important;
@@ -293,9 +296,7 @@ body {
     left: 50%;
     margin-left: -75px;
   }
-  .indexCard .wrapper{
-    background-size: cover !important;
-  }
+
 
 }
 
