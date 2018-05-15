@@ -319,7 +319,7 @@ module.exports.join = function(req, res) {
         eventID: req.body.eventID
     });
     join.save(function (err, eve) {
-        res.redirect("/event/"+eventID);
+        res.redirect("/event/"+req.body.eventID);
     });
 };
 

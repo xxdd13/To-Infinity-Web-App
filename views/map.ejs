@@ -94,7 +94,7 @@
     function initMap() {
 
         var geocoder = new google.maps.Geocoder();
-        var address = "Melbourne";
+        var address = "<% if(!user.city){%>Melbourne<%}else{%><%=user.city%><%};%>";
 
         geocoder.geocode({ 'address': address }, function (results, status) {
 
