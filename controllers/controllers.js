@@ -227,6 +227,7 @@ module.exports.event = function(req, res) {
                                     Join.find({oauthID:req.user.oauthID,eventID:eventID}, function(err, joinedEvents) {})
 
                                 ]).then( ([ liked, users,creator,joinedEvents ]) => {
+                                    console.log(joinedEvents);
                                     res.render('event', { user: req.user, event,event,userInEvent:users,creator:creator,myLikes:liked,myEvents:joinedEvents});
                                 });
                             }

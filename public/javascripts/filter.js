@@ -6,11 +6,11 @@ toggle.addEventListener('click', function(e) {
     if (backoff) return;
     setTimeout(() => backoff = false, 250);
     backoff = true;
-    if (!toggle.classList.contains('active')) {
-        toggle.classList.remove('inactive');
-        citytitle.classList.remove('inactive');
-        toggle.classList.add('active');
-        citytitle.classList.add('active');
+    if (!toggle.classList.contains('activef')) {
+        toggle.classList.remove('inactivef');
+        citytitle.classList.remove('inactivef');
+        toggle.classList.add('activef');
+        citytitle.classList.add('activef');
         for(var i=0;i<cards.length;i++){
             if (cards[i].classList.contains('hideX')) {
                 cards[i].classList.add("filterHide");
@@ -18,10 +18,10 @@ toggle.addEventListener('click', function(e) {
         }
 
     } else {
-        toggle.classList.add('inactive');
-        toggle.classList.remove('active');
-        citytitle.classList.add('inactive');
-        citytitle.classList.remove('active');
+        toggle.classList.add('inactivef');
+        toggle.classList.remove('activef');
+        citytitle.classList.add('inactivef');
+        citytitle.classList.remove('activef');
         for(var i=0;i<cards.length;i++){
             if (cards[i].classList.contains('hideX')) {
                 cards[i].classList.remove("filterHide");
