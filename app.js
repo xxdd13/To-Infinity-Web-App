@@ -1,6 +1,3 @@
-//heroku  https://git.heroku.com/murmuring-inlet-97299.git
-
-const dev = 0;  // Local = 1, heroku = 0   don't forget to change config.js in /configertion
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -135,20 +132,11 @@ function ensureAuthenticated(req, res, next) {
 const PORT = process.env.PORT || 3000;
 
 
-if(dev === 1){
-    // Local server host
-    https.createServer({
-        key: fs.readFileSync('public/key.pem'),
-        cert: fs.readFileSync('public/cert.pem')
-    }, app).listen(PORT);
 
-}else{
     //use this section for heroku
     app.listen(PORT, function(){
         console.log("Starting server at 3000");
-    });
 
-}
 
 
 
